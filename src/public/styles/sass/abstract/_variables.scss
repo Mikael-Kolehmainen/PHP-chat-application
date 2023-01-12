@@ -1,0 +1,27 @@
+// FONT FAMILY
+
+@font-face {
+    font-family: roboto;
+    src: url(/src/public/font/Roboto-Regular.ttf);
+}
+$main-font: roboto;
+
+// FONT COLORS
+
+$font-primary-color: white;
+$font-secondary-color: black;
+
+// MAIN COLORS
+
+$primary-color: #5BC0F8;
+$secondary-color: #006197;
+$background-color: #0081C9;
+$selected-color: #1FAFFF;
+
+// BUTTON COLORS
+
+$button-primary-color: #5BC0F8;
+$button-primary-hover-color: #0081C9;
+
+$button-secondary-color: #FFC93C;
+$button-secondary-hover-color: #B88917;
