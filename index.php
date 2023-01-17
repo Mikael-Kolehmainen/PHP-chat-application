@@ -1,4 +1,5 @@
 <?php
+use public_site\controller\UserController;
 use api\manager\ServerRequestManager;
 
 require __DIR__ . "/src/inc/bootstrap.php";
@@ -8,7 +9,8 @@ session_start();
 $uri = ServerRequestManager::getUriParts();
 
 if (!isset($uri[2])) {
-    $uri[2] = "home";
+    $uri[2] = "user";
+    $uri[3] = "create";
 }
 
 if ($uri[2] != "ajax") {
@@ -17,13 +19,20 @@ if ($uri[2] != "ajax") {
     <html>
         <head>
             <meta name='viewport' content='width=device-width, initial-scale=1'>
-            <link href='/public/styles/css/main.css' rel='stylesheet' type='text/css'>
+            <link href='/public_site/styles/css/main.css' rel='stylesheet' type='text/css'>
     ";
 }
 
 switch ($uri[2]) {
-    case "home":
-        Home();
+    case "user":
+        switch ($uri[3]) {
+            case "create":
+                showCreateUserForm();
+                break;
+            case "log-in":
+                showLogInUserForm();
+                break;
+        }
         break;
     case "ajax":
         if (ServerRequestManager::isPost() || ServerRequestManager::isGet()) {
@@ -48,7 +57,14 @@ if ($uri[2] != "ajax") {
     ";
 }
 
-function Home()
+function showCreateUserForm()
 {
+    $userController = new UserController();
+    $userController->showCreateForm();
+}
 
+function showLogInUserForm()
+{
+    $userController = new UserController();
+    $userController->showLogInForm();
 }
