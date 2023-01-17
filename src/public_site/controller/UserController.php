@@ -6,7 +6,7 @@ class UserController
 {
     public function __construct()
     {
-        
+
     }
 
     public function showCreateForm()
@@ -20,12 +20,12 @@ class UserController
                     <input type='password' class='input-field' maxlength='25' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='PASSWORD' required>
                     <input type='submit' class='btn' value='LOGIN'>
                 </form>
-                <a href='create'>New? Click here</a>
+                <a href='/index.php/user/log-in'>New? Click here</a>
             </article>
         </section>
         ";
     }
-    
+
     public function showLogInForm()
     {
         echo "
@@ -37,7 +37,7 @@ class UserController
                     <input type='password' class='input-field' maxlength='25' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='PASSWORD' required>
                     <input type='submit' class='btn' value='LOGIN'>
                 </form>
-                <a href='create'>New? Click here</a>
+                <a href='/index.php/user/create'>New? Click here</a>
             </article>
         </section>
         ";
