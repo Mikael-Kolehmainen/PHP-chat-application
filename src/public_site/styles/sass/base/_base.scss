@@ -31,8 +31,36 @@
 html, body {
     height: 100%;
     background-color: $background-color;
-    color: white;
+    color: $font-primary-color;
     overflow: hidden;
+}
+a {
+    color: $background-color;
+    text-decoration: none;
+    font-weight: bold;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+// BTN
+
+.btn {
+    font-family: $bold-font;
+    font-size: 22px;
+    color: $font-primary-color;
+    background-color: $button-secondary-color;
+    border: none;
+    box-shadow: 0 4px 4px $shadow-color;
+    cursor: pointer;
+    width: 140px;
+    height: 45px;
+    display: block;
+
+    &:hover {
+        background-color: $button-secondary-hover-color;
+    }
 }
 
 // BOX
@@ -45,17 +73,39 @@ html, body {
     background-color: $primary-color;
     text-align: center;
     width: 450px;
-    height: 550px;
+    height: 450px;
     border-radius: 5px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    box-shadow: 2px 5px 15px $shadow-color;
     
-    input {
-        display: block;
-        text-align: center;
+    .btn {
+        margin-top: 150px;
+        margin-bottom: 30px;
         margin-left: auto;
         margin-right: auto;
     }
+    .input-field {
+        display: block;
+        border: none;
+        text-align: center;
+        width: 80%;
+        height: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: $light-font;
+        font-size: 22px;
+        margin-bottom: 20px;
+        background-color: $input-background-color;
+
+        &:focus {
+            outline: 1px solid black;
+        }
+    }
     h1 {
+        font-family: $light-font;
         font-weight: 100;
         font-size: 48px;
+        margin-bottom: 60px;
     }
 }

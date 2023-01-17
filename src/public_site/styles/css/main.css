@@ -1,8 +1,14 @@
 @font-face {
   font-family: roboto;
-  src: url(/src/public_site/font/Roboto-Regular.ttf);
+  src: url(/src/public_site/font/Roboto-Regular.ttf); }
+
+@font-face {
   font-family: roboto-light;
   src: url(/src/public_site/font/Roboto-Light.ttf); }
+
+@font-face {
+  font-family: roboto-bold;
+  src: url(/src/public_site/font/Roboto-Bold.ttf); }
 
 /* width */
 ::-webkit-scrollbar {
@@ -32,6 +38,27 @@ html, body {
   color: white;
   overflow: hidden; }
 
+a {
+  color: #0081C9;
+  text-decoration: none;
+  font-weight: bold; }
+  a:hover {
+    text-decoration: underline; }
+
+.btn {
+  font-family: roboto-bold;
+  font-size: 22px;
+  color: white;
+  background-color: #FFC93C;
+  border: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  width: 140px;
+  height: 45px;
+  display: block; }
+  .btn:hover {
+    background-color: #B88917; }
+
 .box {
   position: absolute;
   top: 50%;
@@ -40,13 +67,32 @@ html, body {
   background-color: #5BC0F8;
   text-align: center;
   width: 450px;
-  height: 550px;
-  border-radius: 5px; }
-  .box input {
-    display: block;
-    text-align: center;
+  height: 450px;
+  border-radius: 5px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.25); }
+  .box .btn {
+    margin-top: 150px;
+    margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto; }
+  .box .input-field {
+    display: block;
+    border: none;
+    text-align: center;
+    width: 80%;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: roboto-light;
+    font-size: 22px;
+    margin-bottom: 20px;
+    background-color: #EAEAEA; }
+    .box .input-field:focus {
+      outline: 1px solid black; }
   .box h1 {
+    font-family: roboto-light;
     font-weight: 100;
-    font-size: 48px; }
+    font-size: 48px;
+    margin-bottom: 60px; }

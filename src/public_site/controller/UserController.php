@@ -23,9 +23,9 @@ class UserController
             <article class='box'>
                 <h1>WELCOME BACK!</h1>
                 <form action='' method='POST'>
-                    <input type='text' placeholder='USERNAME'>
-                    <input type='password' placeholder='PASSWORD'>
-                    <input type='submit' value='LOGIN'>
+                    <input type='text' class='input-field' placeholder='USERNAME'>
+                    <input type='password' class='input-field' placeholder='PASSWORD'>
+                    <input type='submit' class='btn' value='LOGIN'>
                 </form>
                 <a href='#'>New? Click here</a>
             </article>

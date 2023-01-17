@@ -3,11 +3,20 @@
 @font-face {
     font-family: roboto;
     src: url(/src/public_site/font/Roboto-Regular.ttf);
+}
+$main-font: roboto;
+
+@font-face {
     font-family: roboto-light;
     src: url(/src/public_site/font/Roboto-Light.ttf);
 }
-$main-font: roboto;
 $light-font: roboto-light;
+
+@font-face {
+    font-family: roboto-bold;
+    src: url(/src/public_site/font/Roboto-Bold.ttf);
+}
+$bold-font: roboto-bold;
 
 // FONT COLORS
 
@@ -21,6 +30,8 @@ $secondary-color: #006197;
 $background-color: #0081C9;
 $selected-color: #1FAFFF;
 
+$shadow-color: rgba(0, 0, 0, .25);
+
 // BUTTON COLORS
 
 $button-primary-color: #5BC0F8;
@@ -28,3 +39,7 @@ $button-primary-hover-color: #0081C9;
 
 $button-secondary-color: #FFC93C;
 $button-secondary-hover-color: #B88917;
+
+// INPUT FIELD COLORS
+
+$input-background-color: #EAEAEA;
