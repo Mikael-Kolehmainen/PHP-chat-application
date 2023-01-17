@@ -1,4 +1,5 @@
 <?php
+use public_site\controller\GroupController;
 use public_site\controller\UserController;
 use api\manager\ServerRequestManager;
 
@@ -34,6 +35,9 @@ switch ($uri[2]) {
                 break;
         }
         break;
+    case "groups":
+        showGroups();
+        break;
     case "ajax":
         if (ServerRequestManager::isPost() || ServerRequestManager::isGet()) {
             header('Content-type: Application/json, charset=UTF-8');
@@ -67,4 +71,10 @@ function showLogInUserForm()
 {
     $userController = new UserController();
     $userController->showLogInForm();
+}
+
+function showGroups()
+{
+    $groupController = new GroupController();
+    $groupController->showGroups();
 }

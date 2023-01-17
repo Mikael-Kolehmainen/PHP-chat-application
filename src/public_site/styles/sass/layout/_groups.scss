@@ -1,0 +1,17 @@
+section  {
+    .groups {
+        height: 650px;
+        padding-top: 0;
+        background-color: $secondary-color;
+
+        h1 {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+            margin: 0;
+            text-align: left;
+            border-bottom: 1px solid $font-primary-color;
+            background-color: $secondary-color;
+        }
+    }
+}
