@@ -2,9 +2,12 @@
 
 @font-face {
     font-family: roboto;
-    src: url(/src/public/font/Roboto-Regular.ttf);
+    src: url(/src/public_site/font/Roboto-Regular.ttf);
+    font-family: roboto-light;
+    src: url(/src/public_site/font/Roboto-Light.ttf);
 }
 $main-font: roboto;
+$light-font: roboto-light;
 
 // FONT COLORS
 
