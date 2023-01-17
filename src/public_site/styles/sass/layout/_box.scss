@@ -1,0 +1,85 @@
+
+// BOX
+
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $primary-color;
+    text-align: center;
+    width: 450px;
+    height: 450px;
+    border-radius: 5px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    box-shadow: 2px 5px 15px $shadow-color;
+
+    .btn {
+        margin-top: 150px;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .input-field {
+        display: block;
+        border: none;
+        text-align: center;
+        width: 80%;
+        height: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: $light-font;
+        font-size: 22px;
+        margin-bottom: 20px;
+        background-color: $input-background-color;
+
+        &:focus {
+            outline: 1px solid black;
+        }
+    }
+    .circle-file-input {
+        position: relative;
+        display: block;
+        background-color: $input-background-color;
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+
+        input {
+            display: none;
+        }
+        &:hover {
+            cursor: pointer;
+            background-color: #cccccc;
+        }
+        &::after {
+            content: "CHOOSE IMAGE";
+            color: $font-secondary-color;
+            font-size: 26px;
+            font-family: $light-font;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    .small-notice {
+        font-size: 12px;
+        text-align: left;
+        margin-left: 10%;
+
+        ul {
+            margin-left: 30px;
+        }
+    }
+    h1 {
+        font-family: $light-font;
+        font-weight: 100;
+        font-size: 48px;
+        margin-bottom: 60px;
+    }
+}

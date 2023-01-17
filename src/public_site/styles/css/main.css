@@ -10,6 +10,79 @@
   font-family: roboto-bold;
   src: url(/src/public_site/font/Roboto-Bold.ttf); }
 
+section .create-user {
+  height: 650px; }
+  section .create-user .btn {
+    margin-top: 60px; }
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #5BC0F8;
+  text-align: center;
+  width: 450px;
+  height: 450px;
+  border-radius: 5px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.25); }
+  .box .btn {
+    margin-top: 150px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto; }
+  .box .input-field {
+    display: block;
+    border: none;
+    text-align: center;
+    width: 80%;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: roboto-light;
+    font-size: 22px;
+    margin-bottom: 20px;
+    background-color: #EAEAEA; }
+    .box .input-field:focus {
+      outline: 1px solid black; }
+  .box .circle-file-input {
+    position: relative;
+    display: block;
+    background-color: #EAEAEA;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px; }
+    .box .circle-file-input input {
+      display: none; }
+    .box .circle-file-input:hover {
+      cursor: pointer;
+      background-color: #cccccc; }
+    .box .circle-file-input::after {
+      content: "CHOOSE IMAGE";
+      color: black;
+      font-size: 26px;
+      font-family: roboto-light;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+  .box .small-notice {
+    font-size: 12px;
+    text-align: left;
+    margin-left: 10%; }
+    .box .small-notice ul {
+      margin-left: 30px; }
+  .box h1 {
+    font-family: roboto-light;
+    font-weight: 100;
+    font-size: 48px;
+    margin-bottom: 60px; }
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px; }
@@ -58,41 +131,3 @@ a {
   display: block; }
   .btn:hover {
     background-color: #B88917; }
-
-.box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #5BC0F8;
-  text-align: center;
-  width: 450px;
-  height: 450px;
-  border-radius: 5px;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.25); }
-  .box .btn {
-    margin-top: 150px;
-    margin-bottom: 30px;
-    margin-left: auto;
-    margin-right: auto; }
-  .box .input-field {
-    display: block;
-    border: none;
-    text-align: center;
-    width: 80%;
-    height: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: roboto-light;
-    font-size: 22px;
-    margin-bottom: 20px;
-    background-color: #EAEAEA; }
-    .box .input-field:focus {
-      outline: 1px solid black; }
-  .box h1 {
-    font-family: roboto-light;
-    font-weight: 100;
-    font-size: 48px;
-    margin-bottom: 60px; }
