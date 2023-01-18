@@ -5,5 +5,25 @@
             width: 50%;
             height: 50%;
         }
+
+    }
+}
+a {
+    i {
+        &.fa-arrow-left {
+            background: url('/src/public_site/media/icons/arrow-left.svg') no-repeat center;
+            width: 50%;
+            height: 50%;
+        }
+        &.fa-user-plus {
+            background: url('/src/public_site/media/icons/user-plus.svg') no-repeat center;
+            width: 50%;
+            height: 50%;
+        }
+        &.fa-camera {
+            background: url('/src/public_site/media/icons/camera.svg') no-repeat center;
+            width: 50%;
+            height: 50%;
+        }
     }
 }

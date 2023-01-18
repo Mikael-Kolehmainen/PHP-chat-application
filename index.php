@@ -38,6 +38,13 @@ switch ($uri[2]) {
     case "groups":
         showGroups();
         break;
+    case "group":
+        switch ($uri[3]) {
+            case "chat":
+                showGroupChat();
+                break;
+        }
+        break;
     case "ajax":
         if (ServerRequestManager::isPost() || ServerRequestManager::isGet()) {
             header('Content-type: Application/json, charset=UTF-8');
@@ -77,4 +84,10 @@ function showGroups()
 {
     $groupController = new GroupController();
     $groupController->showGroups();
+}
+
+function showGroupChat()
+{
+    $groupController = new GroupController();
+    $groupController->showChat();
 }
