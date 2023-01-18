@@ -4,6 +4,10 @@ section  {
         padding-top: 0;
         background-color: $secondary-color;
 
+        .btn {
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
         h1 {
             padding-top: 20px;
             padding-bottom: 20px;

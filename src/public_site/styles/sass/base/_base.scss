@@ -43,6 +43,13 @@ a {
         text-decoration: underline;
     }
 }
+.red-link {
+    text-decoration: underline;
+    color: $link-secondary-color;
+    font-family: $bold-font;
+    position: absolute;
+    right: 5px;
+}
 
 // ROUND IMAGE
 
@@ -69,7 +76,14 @@ a {
     width: 140px;
     height: 45px;
     display: block;
+    position: relative;
 
+    i {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
     &.round {
         border-radius: 50%;
         width: 50px;
@@ -96,31 +110,36 @@ a {
     background-color: $primary-color;
 
     li {
-        display: flex;
-        padding-left: 20px;
-        padding-bottom: 10px;
-        padding-top: 10px;
-        border-bottom: 1px solid $secondary-color;
+        a {
+            display: flex;
+            padding-left: 20px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            border-bottom: 1px solid $secondary-color;
 
-        .round-image {
-            margin-top: auto;
-            margin-bottom: auto;
+            .round-image {
+                margin-top: auto;
+                margin-bottom: auto;
 
-            img {
-                width: 50px;
-                height: 50px;
+                img {
+                    width: 50px;
+                    height: 50px;
+                }
             }
-        }
-        p {
-            font-size: 20px;
-            font-family: $light-font;
-            margin-top: auto;
-            margin-bottom: auto;
-            margin-left: 15px;
-        }
-        &:hover {
-            cursor: pointer;
-            background-color: $selected-color;
+            p {
+                font-size: 20px;
+                font-family: $light-font;
+                color: $font-primary-color;
+                font-weight: normal;
+                margin-top: auto;
+                margin-bottom: auto;
+                margin-left: 15px;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: $selected-color;
+                text-decoration: none;
+            }
         }
     }
 }
