@@ -3,16 +3,25 @@
 namespace public_site\controller;
 
 use api\manager\ServerRequestManager;
-use src\model\UserModel;
-use src\model\Database;
+use api\manager\SessionManager;
+use api\model\UserModel;
+use api\model\FileModel;
+use api\model\Database;
+use api\misc\RandomString;
 
 class UserController
 {
     /** @var int */
     private $id;
 
+    /** @var string */
+    private $identifier;
+
     /** @var Database */
     private $db;
+
+    /** @var string */
+    private $imagePath;
 
     public function __construct()
     {
@@ -27,11 +36,37 @@ class UserController
     /**
      *  /index.php/user/insert
      */
-    public function insertUserToDatabase(): void
+    public function saveUser(): void
+    {
+        $this->saveUserImageToServer();
+        $this->insertUserToDatabase();
+        $this->saveIdentifierToSession();
+    }
+
+    private function saveUserImageToServer(): void
+    {
+        // TODO: validate that random string doesn't already exist as filename
+        $fileName = RandomString::getRandomString(10);
+        $fileModel = new FileModel(ServerRequestManager::filesUserImage(), $_SERVER['DOCUMENT_ROOT']."/src/public_site/media/users/$fileName");
+        $this->imagePath = $fileModel->createFilePath();
+        $fileModel->saveFileToServer();
+    }
+
+    private function insertUserToDatabase(): void
     {
         $userModel = new UserModel($this->db);
         $userModel->username = ServerRequestManager::postUsername();
+        $userModel->image = $this->imagePath;
+        $userModel->password = password_hash(ServerRequestManager::postPassword(), PASSWORD_DEFAULT);
+        $userModel->identifier = RandomString::getRandomString(20);
+
+        $this->identifier = $userModel->identifier;
         $this->id = $userModel->save();
+    }
+
+    private function saveIdentifierToSession(): void
+    {
+        SessionManager::saveUserIdentifier($this->identifier);
     }
 
     /**
@@ -45,7 +80,7 @@ class UserController
         <section>
             <article class='box create-user'>
                 <h1>WELCOME</h1>
-                <form action='index.php/user/insert' method='POST'>
+                <form action='/index.php/user/insert' method='POST' enctype='multipart/form-data'>
                     <label class='circle-file-input' id='image-file-input'>
                         <input type='file' id='image' name='user-image' accept='png/jpg/jpeg/gif' required>
                         <p id='file-input-text'>CHOOSE IMAGE</p>

@@ -127,7 +127,7 @@ class GroupController
         <section>
             <article class='box create-group'>
                 <h1>CREATE GROUP</h1>
-                <form action='' method='POST'>
+                <form action='' method='POST' enctype='multipart/form-data'>
                     <label class='circle-file-input' id='image-file-input'>
                         <input type='file' id='image' name='group-image' accept='png/jpg/jpeg/gif' required>
                         <p id='file-input-text'>CHOOSE IMAGE</p>

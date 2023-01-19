@@ -1,6 +1,6 @@
 <?php
 
-namespace src\model;
+namespace api\model;
 
 class UserModel
 {
@@ -15,16 +15,16 @@ class UserModel
     private $id;
 
     /** @var string */
-    private $username;
+    public $username;
 
     /** @var string */
-    private $image;
+    public $image;
 
     /** @var string */
-    private $password;
+    public $password;
 
     /** @var string */
-    private $identifier;
+    public $identifier;
 
     /** @var Database */
     private $db;
@@ -42,7 +42,7 @@ class UserModel
                 self::FIELD_NAME . ', ' .
                 self::FIELD_IMAGE . ', ' .
                 self::FIELD_PW . ', ' .
-                self::FIELD_IDENTIFIER . ', ' .
+                self::FIELD_IDENTIFIER .
                 ') VALUES (?, ?, ?, ?)',
             [
                 ['ssss'],

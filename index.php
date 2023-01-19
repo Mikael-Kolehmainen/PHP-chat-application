@@ -1,4 +1,13 @@
 <?php
+/**
+ * TODO:
+ * - validate that user image is an image with js.
+ * - password validation with js.
+ * - check that repeat password is same as password with js.
+ * -
+ *
+ *
+ */
 use public_site\controller\GroupController;
 use public_site\controller\UserController;
 use api\manager\ServerRequestManager;
@@ -35,7 +44,7 @@ switch ($uri[2]) {
                 break;
             case "insert":
                 if (ServerRequestManager::issetCreateUser()) {
-                    insertUserToDatabase();
+                    saveUserDetails();
                     redirectToGroups();
                 } else {
                     // TODO: show error page
@@ -94,13 +103,10 @@ function showLogInUserForm()
     $userController->showLogInForm();
 }
 
-function insertUserToDatabase()
+function saveUserDetails()
 {
-    // TODO: save to session user identifier then use
-    // it to know which user is logged in and show 
-    // groups where that user is in
     $userController = new UserController();
-    $userController->insertUserToDatabase();
+    $userController->saveUser();
 }
 
 function redirectToGroups()
