@@ -110,10 +110,10 @@ section .chat {
       margin-top: auto;
       margin-bottom: auto;
       font-size: 20px; }
-    section .chat header .add-users {
+    section .chat header .add-users-icon {
       margin-left: auto;
       margin-right: 10px; }
-    section .chat header .back-to-groups {
+    section .chat header .back-to-groups-icon {
       margin-left: 10px; }
     section .chat header .round-image {
       margin-top: auto;
@@ -223,6 +223,10 @@ section .add-users {
           height: 40px; }
         section .add-users form .list-image-title li .round-image {
           margin-left: 10px; }
+
+section .create-group .btn {
+  margin-top: 50px;
+  margin-bottom: 30px; }
 
 /* width */
 ::-webkit-scrollbar {

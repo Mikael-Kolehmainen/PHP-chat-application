@@ -115,9 +115,28 @@ class GroupController
                         </a>
                     </li>
                 </ul>
-                <div class='btn round add'>
+                <a href='/index.php/group/create' class='btn round add'>
                     <i class='fa-solid fa-plus'></i>
-                </div>
+                </a>
+            </article>
+        </section>
+        ";
+    }
+
+    public function showCreateGroup()
+    {
+        echo "
+        <section>
+            <article class='box create-group'>
+                <h1>CREATE GROUP</h1>
+                <form action='' method='POST'>
+                    <label class='circle-file-input'>
+                        <input type='file' name='group-image' accept='png/jpg/jpeg/gif' required>
+                    </label>
+                    <input type='text' name='groupname' placeholder='GROUP NAME' class='input-field' maxlength='20'>
+                    <input type='submit' value='CREATE' class='btn'>
+                </form>
+                <a href='/index.php/groups'>Go back</a>
             </article>
         </section>
         ";
@@ -130,8 +149,8 @@ class GroupController
         <section>
             <article class='box chat'>
                 <header>
-                    <div class='icon-link-container back-to-groups'>
-                        <a href='#' class='icon-link'>
+                    <div class='icon-link-container back-to-groups-icon'>
+                        <a href='/index.php/groups' class='icon-link'>
                             <i class='fa-solid fa-arrow-left'></i>
                         </a>
                     </div>
@@ -139,8 +158,8 @@ class GroupController
                         <img src='/src/public_site/media/placeholder.png'>
                     </div>
                     <h1>GROUPNAME</h1>
-                    <div class='icon-link-container add-users'>
-                        <a href='#' class='icon-link'>
+                    <div class='icon-link-container add-users-icon'>
+                        <a href='/index.php/group/add-user' class='icon-link'>
                             <i class='fa-solid fa-user-plus'></i>
                         </a>
                     </div>

@@ -40,6 +40,9 @@ switch ($uri[2]) {
         break;
     case "group":
         switch ($uri[3]) {
+            case "create":
+                showCreateGroupForm();
+                break;
             case "chat":
                 showGroupChat();
                 break;
@@ -87,6 +90,12 @@ function showGroups()
 {
     $groupController = new GroupController();
     $groupController->showGroups();
+}
+
+function showCreateGroupForm()
+{
+    $groupController = new GroupController();
+    $groupController->showCreateGroup();
 }
 
 function showGroupChat()

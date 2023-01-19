@@ -20,7 +20,7 @@ class UserController
                         <input type='file' name='user-image' accept='png/jpg/jpeg/gif' required>
                     </label>
                     <input type='text' name='username' class='input-field' maxlength='25' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='USERNAME' required>
-                    <input type='password' class='input-field' maxlength='25' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='PASSWORD' required>
+                    <input type='password' class='input-field' maxlength='20' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='PASSWORD' required>
                     <input type='password' name='pw' class='input-field' maxlength='25' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='REPEAT PASSWORD' required>
                     <div class='small-notice'>
                         <p>Password must be at least:</p>
