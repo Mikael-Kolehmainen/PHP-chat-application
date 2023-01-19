@@ -33,6 +33,14 @@ switch ($uri[2]) {
             case "log-in":
                 showLogInUserForm();
                 break;
+            case "insert":
+                if (ServerRequestManager::issetCreateUser()) {
+                    insertUserToDatabase();
+                    redirectToGroups();
+                } else {
+                    // TODO: show error page
+                }
+                break;
         }
         break;
     case "groups":
@@ -84,6 +92,21 @@ function showLogInUserForm()
 {
     $userController = new UserController();
     $userController->showLogInForm();
+}
+
+function insertUserToDatabase()
+{
+    // TODO: save to session user identifier then use
+    // it to know which user is logged in and show 
+    // groups where that user is in
+    $userController = new UserController();
+    $userController->insertUserToDatabase();
+}
+
+function redirectToGroups()
+{
+    $userController = new UserController();
+    $userController->redirectToUserGroups();
 }
 
 function showGroups()

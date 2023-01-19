@@ -8,6 +8,7 @@ class ServerRequestManager
     private const POST = "POST";
     private const GET = "GET";
     private const REQUEST_URI = "REQUEST_URI";
+    private const USERNAME = "username";
 
     public static function isPost()
     {
@@ -23,5 +24,10 @@ class ServerRequestManager
     {
         $uri = parse_url($_SERVER[self::REQUEST_URI], PHP_URL_PATH);
         return explode('/', $uri);
+    }
+
+    public static function issetCreateUser()
+    {
+        return isset($_POST[self::USERNAME]);
     }
 }

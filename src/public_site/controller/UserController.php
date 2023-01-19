@@ -2,11 +2,23 @@
 
 namespace public_site\controller;
 
+use src\model\UserModel;
+
 class UserController
 {
     public function __construct()
     {
 
+    }
+
+    public function redirectToUserGroups()
+    {
+
+    }
+
+    public function insertUserToDatabase()
+    {
+        $userModel = new UserModel;
     }
 
     public function showCreateForm()
@@ -17,7 +29,7 @@ class UserController
         <section>
             <article class='box create-user'>
                 <h1>WELCOME</h1>
-                <form action='' method='POST'>
+                <form action='index.php/user/insert' method='POST'>
                     <label class='circle-file-input' id='image-file-input'>
                         <input type='file' id='image' name='user-image' accept='png/jpg/jpeg/gif' required>
                         <p id='file-input-text'>CHOOSE IMAGE</p>
