@@ -256,17 +256,47 @@ class GroupController
             <article class='box add-users'>
                 <h1>ADD USERS TO GROUPNAME</h1>
                 <form action='' method='POST'>
-                    <input type='text' placeholder='Search here (identifier)'>
-                    <div class=''>
-                        <div class='round-image'>
-                            <img src='/src/public_site/media/placeholder.png'>
-                        </div>
-                        <p>IDENTIFIER</p>
-                        <input type='checkbox' name='identifier-checkbox'>
-                    </div>
+                    <input type='text' placeholder='Search here (identifier)' class='search-field input-field'>
+                    <ul class='list-image-title'>
+                        <li>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>IDENTIFIER</p>
+                            <input type='checkbox' name='identifier-checkbox'>
+                        </li>
+                        <li>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>IDENTIFIER</p>
+                            <input type='checkbox' name='identifier-checkbox'>
+                        </li>
+                        <li>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>IDENTIFIER</p>
+                            <input type='checkbox' name='identifier-checkbox'>
+                        </li>
+                        <li>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>IDENTIFIER</p>
+                            <input type='checkbox' name='identifier-checkbox'>
+                        </li>
+                        <li>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>IDENTIFIER</p>
+                            <input type='checkbox' name='identifier-checkbox'>
+                        </li>
+                    </ul>
                     <input type='submit' class='btn' value='ADD'>
-                    <a href='#'>Go back</a>
                 </form>
+                <a href='/index.php/group/chat'>Go back</a>
             </article>
         </section>
         ";
