@@ -14,6 +14,8 @@ section .create-user {
   height: 650px; }
   section .create-user .btn {
     margin-top: 60px; }
+  section .create-user #pw-validation {
+    color: #E00000; }
 
 .box {
   position: absolute;

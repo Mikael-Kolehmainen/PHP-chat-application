@@ -1,13 +1,5 @@
 <?php
-/**
- * TODO:
- * - validate that user image is an image with js.
- * - password validation with js.
- * - check that repeat password is same as password with js.
- * -
- *
- *
- */
+
 use public_site\controller\GroupController;
 use public_site\controller\UserController;
 use api\manager\ServerRequestManager;
