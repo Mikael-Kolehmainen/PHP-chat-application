@@ -43,6 +43,9 @@ switch ($uri[2]) {
             case "chat":
                 showGroupChat();
                 break;
+            case "add-user":
+                showAddUsersForm();
+                break;
         }
         break;
     case "ajax":
@@ -90,4 +93,10 @@ function showGroupChat()
 {
     $groupController = new GroupController();
     $groupController->showChat();
+}
+
+function showAddUsersForm()
+{
+    $groupController = new GroupController();
+    $groupController->showAddUsers();
 }

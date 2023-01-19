@@ -125,6 +125,7 @@ class GroupController
 
     public function showChat()
     {
+        // TODO: replace placeholder data with data from database
         echo "
         <section>
             <article class='box chat'>
@@ -145,24 +146,93 @@ class GroupController
                     </div>
                 </header>
                 <div class='chat-view'>
-                    <p class='date'>12.01.2023</p>
-                    <div class='message'>
-                        <div class='round-image'>
-                            <img src='/src/public_site/media/placeholder.png'>
+                    <div class='messages'>
+                        <p class='date'>12.01.2023</p>
+                        <div class='message'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a longer message sent by the user. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in leo posuere, lacinia est sit amet, cursus risus. Ut ultrices elit ac arcu sodales pretium.</p>
                         </div>
-                        <p>This is a longer message sent by the user. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in leo posuere, lacinia est sit amet, cursus risus. Ut ultrices elit ac arcu sodales pretium.</p>
-                    </div>
-                    <div class='message'>
-                        <div class='round-image'>
-                            <img src='/src/public_site/media/placeholder.png'>
+                        <div class='message'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a message sent by an other user</p>
                         </div>
-                        <p>This is a message sent by an other user</p>
-                    </div>
-                    <div class='message sent'>
-                        <div class='round-image'>
-                            <img src='/src/public_site/media/placeholder.png'>
+                        <div class='message'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a message sent by an other user</p>
                         </div>
-                        <p>This is a message sent by the user</p>
+                        <div class='message'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a message sent by an other user</p>
+                        </div>
+                        <div class='message'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a message sent by an other user</p>
+                        </div>
+                        <div class='message'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a message sent by an other user</p>
+                        </div>
+                        <div class='message'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a message sent by an other user</p>
+                        </div>
+                        <div class='message'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a message sent by an other user</p>
+                        </div>
+                        <div class='message'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a message sent by an other user</p>
+                        </div>
+                        <div class='message'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a message sent by an other user</p>
+                        </div>
+                        <div class='message'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a message sent by an other user</p>
+                        </div>
+                        <div class='message'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a message sent by an other user</p>
+                        </div>
+                        <p class='date'>19.01.2023</p>
+                        <div class='message'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a message sent by an other user</p>
+                        </div>
+                        <div class='message sent'>
+                            <div class='round-image'>
+                                <img src='/src/public_site/media/placeholder.png'>
+                            </div>
+                            <p>This is a message sent by the user</p>
+                        </div>
                     </div>
                 </div>
                 <form action='' method='POST' class='chat-controller'>
@@ -173,6 +243,29 @@ class GroupController
                         </a>
                     </div>
                     <input type='submit' value='SEND' class='btn'>
+                </form>
+            </article>
+        </section>
+        ";
+    }
+
+    public function showAddUsers()
+    {
+        echo "
+        <section>
+            <article class='box add-users'>
+                <h1>ADD USERS TO GROUPNAME</h1>
+                <form action='' method='POST'>
+                    <input type='text' placeholder='Search here (identifier)'>
+                    <div class=''>
+                        <div class='round-image'>
+                            <img src='/src/public_site/media/placeholder.png'>
+                        </div>
+                        <p>IDENTIFIER</p>
+                        <input type='checkbox' name='identifier-checkbox'>
+                    </div>
+                    <input type='submit' class='btn' value='ADD'>
+                    <a href='#'>Go back</a>
                 </form>
             </article>
         </section>
