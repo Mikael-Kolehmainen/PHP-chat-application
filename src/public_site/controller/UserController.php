@@ -2,13 +2,21 @@
 
 namespace public_site\controller;
 
+use api\manager\ServerRequestManager;
 use src\model\UserModel;
+use src\model\Database;
 
 class UserController
 {
+    /** @var int */
+    private $id;
+
+    /** @var Database */
+    private $db;
+
     public function __construct()
     {
-
+        $this->db = new Database();
     }
 
     public function redirectToUserGroups()
@@ -16,12 +24,20 @@ class UserController
 
     }
 
-    public function insertUserToDatabase()
+    /**
+     *  /index.php/user/insert
+     */
+    public function insertUserToDatabase(): void
     {
-        $userModel = new UserModel;
+        $userModel = new UserModel($this->db);
+        $userModel->username = ServerRequestManager::postUsername();
+        $this->id = $userModel->save();
     }
 
-    public function showCreateForm()
+    /**
+     *  /index.php/user/create
+     */
+    public function showCreateForm(): void
     {
         echo "
             <script src='/src/public_site/js/image-preview.js' defer></script
@@ -52,7 +68,10 @@ class UserController
         ";
     }
 
-    public function showLogInForm()
+    /**
+     *  /index.php/user/log-in
+     */
+    public function showLogInForm(): void
     {
         echo "
         </head>

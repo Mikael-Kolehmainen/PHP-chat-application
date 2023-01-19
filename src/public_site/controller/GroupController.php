@@ -9,6 +9,9 @@ class GroupController
 
     }
 
+    /**
+     *  /index.php/groups
+     */
     public function showGroups()
     {
         // TODO: replace placeholder data with data from database
@@ -95,20 +98,9 @@ class GroupController
                         <a href='#'>
                             <div class='round-image'>
                                 <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>GROUPNAME</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>GROUPNAME</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#'>
+                            </div>/**
+                            *  /index.php/group/add-user
+                            */
                             <div class='round-image'>
                                 <img src='/src/public_site/media/placeholder.png'>
                             </div>
@@ -124,6 +116,9 @@ class GroupController
         ";
     }
 
+    /**
+     *  /index.php/group/create
+     */
     public function showCreateGroup()
     {
         echo "
@@ -146,6 +141,9 @@ class GroupController
         ";
     }
 
+    /**
+     *  /index.php/group/chat
+     */
     public function showChat()
     {
         // TODO: replace placeholder data with data from database
@@ -273,6 +271,9 @@ class GroupController
         ";
     }
 
+    /**
+     *  /index.php/group/add-user
+     */
     public function showAddUsers()
     {
         echo "
@@ -281,42 +282,42 @@ class GroupController
             <article class='box add-users'>
                 <h1>ADD USERS TO GROUPNAME</h1>
                 <form action='' method='POST'>
-                    <input type='text' placeholder='Search here (identifier)' class='search-field input-field'>
+                    <input type='text' placeholder='Search here (username)' class='search-field input-field'>
                     <ul class='list-image-title'>
                         <li>
                             <div class='round-image'>
                                 <img src='/src/public_site/media/placeholder.png'>
                             </div>
-                            <p>IDENTIFIER</p>
-                            <input type='checkbox' name='identifier-checkbox'>
+                            <p>USERNAME</p>
+                            <input type='checkbox' name='username-checkbox'>
                         </li>
                         <li>
                             <div class='round-image'>
                                 <img src='/src/public_site/media/placeholder.png'>
                             </div>
-                            <p>IDENTIFIER</p>
-                            <input type='checkbox' name='identifier-checkbox'>
+                            <p>USERNAME</p>
+                            <input type='checkbox' name='username-checkbox'>
                         </li>
                         <li>
                             <div class='round-image'>
                                 <img src='/src/public_site/media/placeholder.png'>
                             </div>
-                            <p>IDENTIFIER</p>
-                            <input type='checkbox' name='identifier-checkbox'>
+                            <p>USERNAME</p>
+                            <input type='checkbox' name='username-checkbox'>
                         </li>
                         <li>
                             <div class='round-image'>
                                 <img src='/src/public_site/media/placeholder.png'>
                             </div>
-                            <p>IDENTIFIER</p>
-                            <input type='checkbox' name='identifier-checkbox'>
+                            <p>USERNAME</p>
+                            <input type='checkbox' name='username-checkbox'>
                         </li>
                         <li>
                             <div class='round-image'>
                                 <img src='/src/public_site/media/placeholder.png'>
                             </div>
-                            <p>IDENTIFIER</p>
-                            <input type='checkbox' name='identifier-checkbox'>
+                            <p>USERNAME</p>
+                            <input type='checkbox' name='username-checkbox'>
                         </li>
                     </ul>
                     <input type='submit' class='btn' value='ADD'>

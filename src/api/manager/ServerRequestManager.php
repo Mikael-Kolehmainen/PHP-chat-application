@@ -30,4 +30,9 @@ class ServerRequestManager
     {
         return isset($_POST[self::USERNAME]);
     }
+
+    public static function postUsername()
+    {
+        return $_POST[self::USERNAME];
+    }
 }

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 19, 2023 at 01:23 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Jan 19, 2023 at 03:37 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `groups` (
   `id` int(4) NOT NULL,
   `name` varchar(20) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -46,7 +46,7 @@ CREATE TABLE `messages` (
   `video` varchar(255) DEFAULT NULL,
   `groups_id` int(4) DEFAULT NULL,
   `users_id` int(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -58,8 +58,9 @@ CREATE TABLE `users` (
   `id` int(4) NOT NULL,
   `name` varchar(20) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `pw` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `pw` varchar(255) DEFAULT NULL,
+  `identifier` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,7 @@ CREATE TABLE `users_groups` (
   `id` int(4) NOT NULL,
   `users_id` int(4) DEFAULT NULL,
   `groups_id` int(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
