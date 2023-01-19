@@ -62,8 +62,7 @@ section .create-user {
     .box .circle-file-input:hover {
       cursor: pointer;
       background-color: #cccccc; }
-    .box .circle-file-input::after {
-      content: "CHOOSE IMAGE";
+    .box .circle-file-input p {
       color: black;
       font-size: 26px;
       font-family: roboto-light;

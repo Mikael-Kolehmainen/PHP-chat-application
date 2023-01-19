@@ -12,15 +12,18 @@ class UserController
     public function showCreateForm()
     {
         echo "
+            <script src='/src/public_site/js/image-preview.js' defer></script
+        </head>
         <section>
             <article class='box create-user'>
                 <h1>WELCOME</h1>
                 <form action='' method='POST'>
-                    <label class='circle-file-input'>
-                        <input type='file' name='user-image' accept='png/jpg/jpeg/gif' required>
+                    <label class='circle-file-input' id='image-file-input'>
+                        <input type='file' id='image' name='user-image' accept='png/jpg/jpeg/gif' required>
+                        <p id='file-input-text'>CHOOSE IMAGE</p>
                     </label>
-                    <input type='text' name='username' class='input-field' maxlength='25' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='USERNAME' required>
-                    <input type='password' class='input-field' maxlength='20' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='PASSWORD' required>
+                    <input type='text' name='username' class='input-field' maxlength='20' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='USERNAME' required>
+                    <input type='password' class='input-field' maxlength='25' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='PASSWORD' required>
                     <input type='password' name='pw' class='input-field' maxlength='25' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='REPEAT PASSWORD' required>
                     <div class='small-notice'>
                         <p>Password must be at least:</p>
@@ -40,6 +43,7 @@ class UserController
     public function showLogInForm()
     {
         echo "
+        </head>
         <section>
             <article class='box login'>
                 <h1>WELCOME BACK!</h1>

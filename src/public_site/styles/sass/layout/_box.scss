@@ -56,8 +56,7 @@
             cursor: pointer;
             background-color: #cccccc;
         }
-        &::after {
-            content: "CHOOSE IMAGE";
+        p {
             color: $font-secondary-color;
             font-size: 26px;
             font-family: $light-font;

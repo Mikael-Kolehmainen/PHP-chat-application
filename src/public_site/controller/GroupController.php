@@ -13,6 +13,7 @@ class GroupController
     {
         // TODO: replace placeholder data with data from database
         echo "
+        </head>
         <section>
             <article class='box groups'>
                 <a href='#' class='red-link'>LOGOUT</a>
@@ -126,12 +127,15 @@ class GroupController
     public function showCreateGroup()
     {
         echo "
+            <script src='/src/public_site/js/image-preview.js' defer></script
+        </head>
         <section>
             <article class='box create-group'>
                 <h1>CREATE GROUP</h1>
                 <form action='' method='POST'>
-                    <label class='circle-file-input'>
-                        <input type='file' name='group-image' accept='png/jpg/jpeg/gif' required>
+                    <label class='circle-file-input' id='image-file-input'>
+                        <input type='file' id='image' name='group-image' accept='png/jpg/jpeg/gif' required>
+                        <p id='file-input-text'>CHOOSE IMAGE</p>
                     </label>
                     <input type='text' name='groupname' placeholder='GROUP NAME' class='input-field' maxlength='20'>
                     <input type='submit' value='CREATE' class='btn'>
@@ -146,6 +150,7 @@ class GroupController
     {
         // TODO: replace placeholder data with data from database
         echo "
+        </head>
         <section>
             <article class='box chat'>
                 <header>
@@ -271,6 +276,7 @@ class GroupController
     public function showAddUsers()
     {
         echo "
+        </head>
         <section>
             <article class='box add-users'>
                 <h1>ADD USERS TO GROUPNAME</h1>
