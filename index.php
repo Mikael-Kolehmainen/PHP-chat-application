@@ -2,6 +2,7 @@
 
 use public_site\controller\GroupController;
 use public_site\controller\UserController;
+use public_site\controller\ErrorController;
 use api\manager\ServerRequestManager;
 
 require __DIR__ . "/src/inc/bootstrap.php";
@@ -79,6 +80,9 @@ switch ($uri[2]) {
             }
         }
         break;
+    case "error":
+        showError("Error title", "This is the error page.", "/index.php/user/create");
+        break;
     default:
         header("HTTP/1.1 404 Not Found");
         exit();
@@ -143,4 +147,10 @@ function showAddUsersForm()
 {
     $groupController = new GroupController();
     $groupController->showAddUsers();
+}
+
+function showError($title, $message, $link)
+{
+    $errorController = new ErrorController($title, $message, $link);
+    $errorController->showErrorPage();
 }

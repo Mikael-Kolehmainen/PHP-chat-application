@@ -231,6 +231,15 @@ section .create-group .btn {
   margin-top: 50px;
   margin-bottom: 30px; }
 
+section .error p {
+  font-size: 20px; }
+
+section .error a {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px; }
