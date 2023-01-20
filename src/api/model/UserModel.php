@@ -77,6 +77,7 @@ class UserModel
         $this->image = $record[self::FIELD_IMAGE];
         $this->identifier = $record[self::FIELD_IDENTIFIER];
         $this->password = $record[self::FIELD_PW];
+
         return $this;
     }
 }

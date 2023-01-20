@@ -98,11 +98,6 @@ class GroupController
                         <a href='#'>
                             <div class='round-image'>
                                 <img src='/src/public_site/media/placeholder.png'>
-                            </div>/**
-                            *  /index.php/group/add-user
-                            */
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
                             </div>
                             <p>GROUPNAME</p>
                         </a>

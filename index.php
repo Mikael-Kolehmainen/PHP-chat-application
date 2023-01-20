@@ -38,7 +38,6 @@ switch ($uri[2]) {
             case "insert":
                 if (ServerRequestManager::issetCreateUser()) {
                     saveUserDetails();
-                    redirectToGroups();
                 } else {
                     showError(
                         "Error in user creation",
@@ -49,8 +48,7 @@ switch ($uri[2]) {
                 break;
             case "select":
                 if (ServerRequestManager::issetLogIn()) {
-                    validateUserDetails();
-                    redirectToGroups();
+                    logInUser();
                 } else {
                     showError(
                         "Error in user login",
@@ -125,16 +123,10 @@ function saveUserDetails()
     $userController->saveUser();
 }
 
-function validateUserDetails()
+function logInUser()
 {
     $userController = new UserController();
-    $userController->validateUser();
-}
-
-function redirectToGroups()
-{
-    $userController = new UserController();
-    $userController->redirectToUserGroups();
+    $userController->logInUser();
 }
 
 function showGroups()

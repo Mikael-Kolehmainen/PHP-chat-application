@@ -30,24 +30,40 @@ class UserController
 
     public function redirectToUserGroups()
     {
-
+        header("Location: /index.php/groups");
     }
 
     /**
      *  /index.php/user/select
      */
-    public function validateUser(): void
+    public function logInUser(): void
+    {
+        if ($this->checkCredentials()) {
+            $this->saveIdentifierToSession();
+            $this->redirectToUserGroups();
+        } else {
+            $this->showLogInError();
+        }
+    }
+
+    private function checkCredentials(): bool
     {
         $userModel = new UserModel($this->db);
         $userModel->username = ServerRequestManager::postUsername();
 
-        $userPassword = $userModel->load()->password;
+        $user = $userModel->load();
+        $this->identifier = $user->identifier;
+
+        $userPassword = $user->password;
         $inputtedPassword = ServerRequestManager::postPassword();
 
-        if (!password_verify($inputtedPassword, $userPassword)) {
-            $errorController = new ErrorController("Credentials are incorrect", "The credentials are incorrect, please try again.", "/index.php/user/log-in");
-            $errorController->showErrorPage();
-        }
+        return password_verify($inputtedPassword, $userPassword);
+    }
+
+    private function showLogInError(): void
+    {
+        $errorController = new ErrorController("Credentials are incorrect", "The credentials are incorrect, please try again.", "/index.php/user/log-in");
+        $errorController->showErrorPage();
     }
 
     /**
@@ -59,6 +75,7 @@ class UserController
             $this->saveUserImageToServer();
             $this->insertUserToDatabase();
             $this->saveIdentifierToSession();
+            $this->redirectToUserGroups();
         } else {
             $this->showCreationError();
         }
@@ -69,7 +86,7 @@ class UserController
         $userModel = new UserModel($this->db);
         $userModel->username = ServerRequestManager::postUsername();
 
-        return empty($userModel->load());
+        return empty($userModel->load()->username);
     }
 
     private function saveUserImageToServer(): void
