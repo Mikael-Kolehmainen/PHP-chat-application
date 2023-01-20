@@ -14,7 +14,7 @@ section .create-user {
   height: 650px; }
   section .create-user .btn {
     margin-top: 60px; }
-  section .create-user #pw-validation {
+  section .create-user #validation-msg, section .create-user #pw-length-validation {
     color: #E00000; }
 
 .box {
@@ -329,6 +329,11 @@ a {
       background-color: #107400; }
   .btn:hover {
     background-color: #B88917; }
+  .btn:disabled {
+    opacity: 0.5; }
+    .btn:disabled:hover {
+      background-color: #FFC93C;
+      cursor: auto; }
 
 .list-image-title {
   list-style: none;

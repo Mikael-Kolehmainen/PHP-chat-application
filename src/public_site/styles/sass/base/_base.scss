@@ -125,6 +125,14 @@ a {
     &:hover {
         background-color: $button-secondary-hover-color;
     }
+    &:disabled {
+        opacity: 0.5;
+
+        &:hover {
+            background-color: $button-secondary-color;
+            cursor: auto;
+        }
+    }
 }
 
 // LIST WITH TITLE & IMAGE

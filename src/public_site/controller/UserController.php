@@ -74,8 +74,8 @@ class UserController
     public function showCreateForm(): void
     {
         echo "
+            <script src='/src/public_site/js/file-functions.js' defer></script>
             <script src='/src/public_site/js/password-validation.js' defer></script>
-            <script src='/src/public_site/js/image-preview.js' defer></script
         </head>
         <section>
             <article class='box create-user'>
@@ -88,14 +88,14 @@ class UserController
                     <input type='text' name='username' class='input-field' maxlength='20' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='USERNAME' required>
                     <input type='password' id='pw1' class='input-field' maxlength='25' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='PASSWORD' required>
                     <input type='password' id='pw2' name='pw' class='input-field' maxlength='25' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='REPEAT PASSWORD' required>
-                    <p id='pw-validation'></p>
+                    <p id='validation-msg'> </p>
                     <div class='small-notice'>
                         <p>Password must be at least:</p>
                         <ul>
                             <li id='pw-length-validation'>8 characters long</li>
                         </ul>
                     </div>
-                    <input type='submit' id='create-btn' name='create' class='btn' value='CREATE'>
+                    <input type='submit' id='create-btn' name='create' class='btn' value='CREATE' disabled>
                 </form>
                 <a href='/index.php/user/log-in'>Already a user? Click here</a>
             </article>

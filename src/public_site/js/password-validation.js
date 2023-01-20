@@ -1,11 +1,13 @@
 const pwDiv1 = document.getElementById("pw1");
+const pwDiv2 = document.getElementById("pw2");
 
 pwDiv1.addEventListener('blur', validatePassword);
+pwDiv2.addEventListener('blur', validatePassword);
 
 function validatePassword()
 {
     const lengthValidation = document.getElementById("pw-length-validation");
-    const pwValidation = document.getElementById("pw-validation");
+    const pwValidation = document.getElementById("validation-msg");
 
     const pw1 = document.getElementById("pw1").value;
     const pw2 = document.getElementById("pw2").value;
