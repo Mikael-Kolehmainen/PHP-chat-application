@@ -42,6 +42,14 @@ switch ($uri[2]) {
                     // TODO: show error page
                 }
                 break;
+            case "select":
+                if (ServerRequestManager::issetLogIn()) {
+                    validateUserDetails();
+                    redirectToGroups();
+                } else {
+                    // TODO: show error page
+                }
+                break;
         }
         break;
     case "groups":
@@ -99,6 +107,12 @@ function saveUserDetails()
 {
     $userController = new UserController();
     $userController->saveUser();
+}
+
+function validateUserDetails()
+{
+    $userController = new UserController();
+    $userController->validateUser();
 }
 
 function redirectToGroups()

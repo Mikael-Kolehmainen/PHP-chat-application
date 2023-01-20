@@ -8,6 +8,8 @@ class ServerRequestManager
     private const POST = "POST";
     private const GET = "GET";
     private const REQUEST_URI = "REQUEST_URI";
+    private const CREATE = "create";
+    private const LOG_IN = "log-in";
     private const USERNAME = "username";
     private const USER_IMAGE = "user-image";
     private const PASSWORD = "pw";
@@ -33,7 +35,12 @@ class ServerRequestManager
 
     public static function issetCreateUser(): bool
     {
-        return isset($_POST[self::USERNAME]);
+        return isset($_POST[self::CREATE]);
+    }
+
+    public static function issetLogIn(): bool
+    {
+        return isset($_POST[self::LOG_IN]);
     }
 
     public static function postUsername(): string

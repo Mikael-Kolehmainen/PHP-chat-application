@@ -34,6 +34,23 @@ class UserController
     }
 
     /**
+     *  /index.php/user/select
+     */
+    public function validateUser(): void
+    {
+        $userModel = new UserModel($this->db);
+        $userModel->username = ServerRequestManager::postUsername();
+
+        $userPassword = $userModel->load()->password;
+        $inputtedPassword = ServerRequestManager::postPassword();
+
+        if (!password_verify($inputtedPassword, $userPassword)) {
+            // TODO: show error page
+            echo "passwords don't match!";
+        }
+    }
+
+    /**
      *  /index.php/user/insert
      */
     public function saveUser(): void
@@ -113,7 +130,7 @@ class UserController
         <section>
             <article class='box login'>
                 <h1>WELCOME BACK!</h1>
-                <form action='' method='POST'>
+                <form action='/index.php/user/select' method='POST'>
                     <input type='text' name='username' class='input-field' maxlength='25' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='USERNAME' required>
                     <input type='password' name='pw' class='input-field' maxlength='25' onkeydown='return /[a-z0-9]/i.test(event.key)' placeholder='PASSWORD' required>
                     <input type='submit' name='log-in' class='btn' value='LOGIN'>
