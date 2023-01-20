@@ -2,6 +2,8 @@
 
 namespace public_site\controller;
 
+use api\manager\SessionManager;
+
 class GroupController
 {
     public function __construct()
@@ -9,17 +11,27 @@ class GroupController
 
     }
 
+    public function showGroups()
+    {
+        if (SessionManager::issetUserIdentifier()) {
+            $this->showGroupsPage();
+        } else {
+            $errorController = new ErrorController("Not logged in", "You're not logged in, please login or create an account", "/index.php/user/create");
+            $errorController->showErrorPage();
+        }
+    }
+
     /**
      *  /index.php/groups
      */
-    public function showGroups()
+    private function showGroupsPage()
     {
         // TODO: replace placeholder data with data from database
         echo "
         </head>
         <section>
             <article class='box groups'>
-                <a href='#' class='red-link'>LOGOUT</a>
+                <a href='/index.php/user/log-out' class='red-link'>LOGOUT</a>
                 <h1>CHATS</h1>
                 <ul class='list-image-title'>
                     <li>

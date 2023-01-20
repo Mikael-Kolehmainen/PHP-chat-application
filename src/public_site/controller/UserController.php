@@ -120,6 +120,12 @@ class UserController
         $errorController->showErrorPage();
     }
 
+    public function logOut(): void
+    {
+        SessionManager::deleteUserIdentifier();
+        header("Location: /index.php/user/log-in");
+    }
+
     /**
      *  /index.php/user/create
      */

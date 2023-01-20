@@ -35,6 +35,9 @@ switch ($uri[2]) {
             case "log-in":
                 showLogInUserForm();
                 break;
+            case "log-out":
+                logOutUser();
+                break;
             case "insert":
                 if (ServerRequestManager::issetCreateUser()) {
                     saveUserDetails();
@@ -115,6 +118,12 @@ function showLogInUserForm()
 {
     $userController = new UserController();
     $userController->showLogInForm();
+}
+
+function logOutUser()
+{
+    $userController = new UserController();
+    $userController->logOut();
 }
 
 function saveUserDetails()

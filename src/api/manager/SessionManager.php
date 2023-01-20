@@ -11,8 +11,18 @@ class SessionManager
         $_SESSION[self::USER_IDENTIFIER] = $identifier;
     }
 
+    public static function issetUserIdentifier(): bool
+    {
+        return isset($_SESSION[self::USER_IDENTIFIER]);
+    }
+
     public static function getUserIdentifier(): string
     {
         return $_SESSION[self::USER_IDENTIFIER];
+    }
+
+    public static function deleteUserIdentifier(): void
+    {
+        unset($_SESSION[self::USER_IDENTIFIER]);
     }
 }
