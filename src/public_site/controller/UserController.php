@@ -55,9 +55,21 @@ class UserController
      */
     public function saveUser(): void
     {
-        $this->saveUserImageToServer();
-        $this->insertUserToDatabase();
-        $this->saveIdentifierToSession();
+        if ($this->uniqueUsername()) {
+            $this->saveUserImageToServer();
+            $this->insertUserToDatabase();
+            $this->saveIdentifierToSession();
+        } else {
+            $this->showCreationError();
+        }
+    }
+
+    private function uniqueUsername(): bool
+    {
+        $userModel = new UserModel($this->db);
+        $userModel->username = ServerRequestManager::postUsername();
+
+        return empty($userModel->load());
     }
 
     private function saveUserImageToServer(): void
@@ -83,6 +95,12 @@ class UserController
     private function saveIdentifierToSession(): void
     {
         SessionManager::saveUserIdentifier($this->identifier);
+    }
+
+    private function showCreationError(): void
+    {
+        $errorController = new ErrorController("Username exists", "The given username already exists, please try with another one.", "/index.php/user/create");
+        $errorController->showErrorPage();
     }
 
     /**

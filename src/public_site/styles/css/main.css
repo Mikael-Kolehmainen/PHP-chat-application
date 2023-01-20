@@ -231,7 +231,7 @@ section .create-group .btn {
   margin-top: 50px;
   margin-bottom: 30px; }
 
-section .error h1 {
+section .error h1, section .error p {
   width: 80%;
   margin-left: auto;
   margin-right: auto; }
