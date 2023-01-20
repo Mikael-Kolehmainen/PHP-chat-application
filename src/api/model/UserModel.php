@@ -10,9 +10,12 @@ class UserModel
     private const FIELD_IMAGE = 'image';
     private const FIELD_PW = 'pw';
     private const FIELD_IDENTIFIER = 'identifier';
+    private const USER_GROUPS_TABLE_NAME = 'users_groups';
+    private const USERS_ID = 'users_id';
+    private const GROUPS_ID = 'groups_id';
 
     /** @var int */
-    private $id;
+    public $id;
 
     /** @var string */
     public $username;
@@ -35,11 +38,22 @@ class UserModel
     }
 
     /** @return $this */
-    public function load()
+    public function loadWithUsername()
     {
         $records = $this->db->select(
             'SELECT * FROM ' . self::TABLE_NAME . ' WHERE ' . self::FIELD_NAME . ' = ?',
             [["s"], [$this->username]]
+        );
+        $record = array_pop($records);
+        return $this->mapFromDbRecord($record);
+    }
+
+    /** @return $this*/
+    public function loadWithIdentifier()
+    {
+        $records = $this->db->select(
+            'SELECT * FROM ' . self::TABLE_NAME . ' WHERE ' . self::FIELD_IDENTIFIER . ' = ?',
+            [["s"], [$this->identifier]]
         );
         $record = array_pop($records);
         return $this->mapFromDbRecord($record);
@@ -64,6 +78,24 @@ class UserModel
                     $this->identifier
                 ]
             ]);
+    }
+
+    public function loadGroupsIds()
+    {
+        $records = $this->db->select(
+            'SELECT * FROM ' . self::USER_GROUPS_TABLE_NAME . ' WHERE ' . self::USERS_ID . ' = ?',
+            [["s"], [$this->id]]
+        );
+
+        $IDs = [];
+        $i = 0;
+        foreach ($records as $record) {
+            $IDs[$i] = $record[self::GROUPS_ID];
+
+            $i++;
+        }
+
+        return $IDs;
     }
 
     /**

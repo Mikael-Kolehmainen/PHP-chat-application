@@ -5,6 +5,7 @@ namespace public_site\controller;
 use api\manager\ServerRequestManager;
 use api\manager\SessionManager;
 use api\model\UserModel;
+use api\model\GroupModel;
 use api\model\FileModel;
 use api\model\Database;
 use api\misc\RandomString;
@@ -12,7 +13,7 @@ use api\misc\RandomString;
 class UserController
 {
     /** @var int */
-    private $id;
+    public $id;
 
     /** @var string */
     private $identifier;
@@ -51,7 +52,7 @@ class UserController
         $userModel = new UserModel($this->db);
         $userModel->username = ServerRequestManager::postUsername();
 
-        $user = $userModel->load();
+        $user = $userModel->loadWithUsername();
         $this->identifier = $user->identifier;
 
         $userPassword = $user->password;
@@ -86,7 +87,7 @@ class UserController
         $userModel = new UserModel($this->db);
         $userModel->username = ServerRequestManager::postUsername();
 
-        return empty($userModel->load()->username);
+        return empty($userModel->loadWithUsername()->username);
     }
 
     private function saveUserImageToServer(): void
@@ -124,6 +125,33 @@ class UserController
     {
         SessionManager::deleteUserIdentifier();
         header("Location: /index.php/user/log-in");
+    }
+
+    /**
+     * @return GroupModel[]
+     */
+    public function getMyGroups()
+    {
+        $groupIds = $this->getGroupIds();
+
+        $groups = [];
+        $i = 0;
+        foreach ($groupIds as $id) {
+            $groupModel = new GroupModel($this->db);
+            $groupModel->id = $id;
+            $groups[$i] = $groupModel->load();
+
+            $i++;
+        }
+
+        return $groups;
+    }
+
+    private function getGroupIds()
+    {
+        $userModel = new UserModel($this->db);
+        $userModel->id = $this->id;
+        return $userModel->loadGroupsIds();
     }
 
     /**

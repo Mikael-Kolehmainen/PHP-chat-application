@@ -2,13 +2,18 @@
 
 namespace public_site\controller;
 
+use api\model\UserModel;
+use api\model\Database;
 use api\manager\SessionManager;
 
 class GroupController
 {
+    /** @var Database */
+    private $db;
+
     public function __construct()
     {
-
+        $this->db = new Database();
     }
 
     public function showGroups()
@@ -34,86 +39,9 @@ class GroupController
                 <a href='/index.php/user/log-out' class='red-link'>LOGOUT</a>
                 <h1>CHATS</h1>
                 <ul class='list-image-title'>
-                    <li>
-                        <a href='#'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>GROUPNAME</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>GROUPNAME</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>GROUPNAME</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>GROUPNAME</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>GROUPNAME</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>GROUPNAME</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>GROUPNAME</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>GROUPNAME</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>GROUPNAME</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>GROUPNAME</p>
-                        </a>
-                    </li>
+        ";
+                    $this->showUserGroups();
+        echo "
                 </ul>
                 <a href='/index.php/group/create' class='btn round add'>
                     <i class='fa-solid fa-plus'></i>
@@ -121,6 +49,54 @@ class GroupController
             </article>
         </section>
         ";
+    }
+
+    private function showUserGroups()
+    {
+        /*
+            <li>
+                <a href='#'>
+                    <div class='round-image'>
+                        <img src='/src/public_site/media/placeholder.png'>
+                    </div>
+                    <p>GROUPNAME</p>
+                </a>
+            </li>
+        */
+        /**
+         * TODO:
+         * 1. Get user id with identifier
+         * 2. Get groups ids with user id from users_groups
+         * 3. Get groups from with groups ids
+         * 4. Show groups
+         */
+
+        $userID = $this->getUserID();
+
+        $userController = new UserController();
+        $userController->id = $userID;
+        $groups = $userController->getMyGroups();
+
+        foreach ($groups as $group) {
+            echo "
+            <li>
+                <a href='#'>
+                    <div class='round-image'>
+                        <img src='$group->image'>
+                    </div>
+                    <p>$group->groupName</p>
+                </a>
+            </li>
+            ";
+        }
+    }
+
+    private function getUserID(): int
+    {
+        $userModel = new UserModel($this->db);
+        $userModel->identifier = SessionManager::getUserIdentifier();
+
+        return $userModel->loadWithIdentifier()->id;
     }
 
     /**
