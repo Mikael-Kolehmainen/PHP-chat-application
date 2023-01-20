@@ -40,7 +40,11 @@ switch ($uri[2]) {
                     saveUserDetails();
                     redirectToGroups();
                 } else {
-                    // TODO: show error page
+                    showError(
+                        "Error in user creation",
+                        "Please fill the form on the create user page.",
+                        "/index.php/user/create"
+                    );
                 }
                 break;
             case "select":
@@ -48,7 +52,11 @@ switch ($uri[2]) {
                     validateUserDetails();
                     redirectToGroups();
                 } else {
-                    // TODO: show error page
+                    showError(
+                        "Error in user login",
+                        "Please fill the form on the login page.",
+                        "/index.php/user/log-in"
+                    );
                 }
                 break;
         }
@@ -84,7 +92,11 @@ switch ($uri[2]) {
         showError("Error title", "This is the error page.", "/index.php/user/create");
         break;
     default:
-        header("HTTP/1.1 404 Not Found");
+        showError(
+            "404 Not Found",
+            "The page you're looking for doesn't exist.",
+            "/index.php/user/create"
+        );
         exit();
 }
 

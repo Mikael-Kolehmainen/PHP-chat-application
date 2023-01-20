@@ -45,8 +45,8 @@ class UserController
         $inputtedPassword = ServerRequestManager::postPassword();
 
         if (!password_verify($inputtedPassword, $userPassword)) {
-            // TODO: show error page
-            echo "passwords don't match!";
+            $errorController = new ErrorController("Credentials are incorrect", "The credentials are incorrect, please try again.", "/index.php/user/log-in");
+            $errorController->showErrorPage();
         }
     }
 
