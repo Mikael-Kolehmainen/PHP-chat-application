@@ -2,12 +2,23 @@
 
 namespace public_site\controller;
 
+use api\manager\ServerRequestManager;
+use api\model\GroupModel;
 use api\model\UserModel;
 use api\model\Database;
 use api\manager\SessionManager;
 
 class GroupController
 {
+    /** @var int */
+    private $id;
+
+    /** @var string */
+    private $groupName;
+
+    /** @var string */
+    private $image;
+
     /** @var Database */
     private $db;
 
@@ -16,6 +27,9 @@ class GroupController
         $this->db = new Database();
     }
 
+    /**
+     *  /index.php/groups
+     */
     public function showGroups()
     {
         if (SessionManager::issetUserIdentifier()) {
@@ -26,12 +40,8 @@ class GroupController
         }
     }
 
-    /**
-     *  /index.php/groups
-     */
     private function showGroupsPage()
     {
-        // TODO: replace placeholder data with data from database
         echo "
         </head>
         <section>
@@ -53,34 +63,12 @@ class GroupController
 
     private function showUserGroups()
     {
-        /*
-            <li>
-                <a href='#'>
-                    <div class='round-image'>
-                        <img src='/src/public_site/media/placeholder.png'>
-                    </div>
-                    <p>GROUPNAME</p>
-                </a>
-            </li>
-        */
-        /**
-         * TODO:
-         * 1. Get user id with identifier
-         * 2. Get groups ids with user id from users_groups
-         * 3. Get groups from with groups ids
-         * 4. Show groups
-         */
-
-        $userID = $this->getUserID();
-
-        $userController = new UserController();
-        $userController->id = $userID;
-        $groups = $userController->getMyGroups();
+        $groups = $this->getUserGroups();
 
         foreach ($groups as $group) {
             echo "
             <li>
-                <a href='#'>
+                <a href='/index.php/group/chat/$group->id'>
                     <div class='round-image'>
                         <img src='$group->image'>
                     </div>
@@ -89,6 +77,13 @@ class GroupController
             </li>
             ";
         }
+    }
+
+    private function getUserGroups()
+    {
+        $userController = new UserController();
+        $userController->id = $this->getUserID();;
+        return $userController->getMyGroups();
     }
 
     private function getUserID(): int
@@ -129,7 +124,59 @@ class GroupController
      */
     public function showChat()
     {
-        // TODO: replace placeholder data with data from database
+        if (SessionManager::issetUserIdentifier()) {
+            if ($this->groupExists()) {
+                if ($this->userIsAMember()) {
+                    $this->getGroupDetails();
+                    $this->showChatPage();
+                } else {
+                    $errorController = new ErrorController("You're not a part of the group", "You're not a part of the given group.", "/index.php/groups");
+                    $errorController->showErrorPage();
+                }
+            } else {
+                $errorController = new ErrorController("Group doesn't exist", "The group couldn't be found with the given id.", "/index.php/groups");
+                $errorController->showErrorPage();
+            }
+        } else {
+            $errorController = new ErrorController("Not logged in", "You're not logged in, please login or create an account.", "/index.php/user/create");
+            $errorController->showErrorPage();
+        }
+    }
+
+    private function groupExists()
+    {
+        $groupModel = new GroupModel($this->db);
+        $groupModel->id = ServerRequestManager::getGroupIdFromUri();
+
+        return !empty($groupModel->load()->id);
+    }
+
+    private function userIsAMember()
+    {
+        $groups = $this->getUserGroups();
+
+        foreach ($groups as $group) {
+            if (ServerRequestManager::getGroupIdFromUri() == $group->id) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function getGroupDetails()
+    {
+        $groupModel = new GroupModel($this->db);
+        $groupModel->id = ServerRequestManager::getGroupIdFromUri();
+        $groupData = $groupModel->load();
+
+        $this->id = $groupData->id;
+        $this->groupName = $groupData->groupName;
+        $this->image = $groupData->image;
+    }
+
+    private function showChatPage()
+    {
         echo "
         </head>
         <section>
@@ -141,104 +188,20 @@ class GroupController
                         </a>
                     </div>
                     <div class='round-image'>
-                        <img src='/src/public_site/media/placeholder.png'>
+                        <img src='$this->image'>
                     </div>
-                    <h1>GROUPNAME</h1>
+                    <h1>$this->groupName</h1>
+
                     <div class='icon-link-container add-users-icon'>
-                        <a href='/index.php/group/add-user' class='icon-link'>
+                        <a href='/index.php/group/add-user/$this->id' class='icon-link'>
                             <i class='fa-solid fa-user-plus'></i>
                         </a>
                     </div>
                 </header>
                 <div class='chat-view'>
-                    <div class='messages'>
-                        <p class='date'>12.01.2023</p>
-                        <div class='message'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a longer message sent by the user. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in leo posuere, lacinia est sit amet, cursus risus. Ut ultrices elit ac arcu sodales pretium.</p>
-                        </div>
-                        <div class='message'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a message sent by an other user</p>
-                        </div>
-                        <div class='message'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a message sent by an other user</p>
-                        </div>
-                        <div class='message'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a message sent by an other user</p>
-                        </div>
-                        <div class='message'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a message sent by an other user</p>
-                        </div>
-                        <div class='message'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a message sent by an other user</p>
-                        </div>
-                        <div class='message'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a message sent by an other user</p>
-                        </div>
-                        <div class='message'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a message sent by an other user</p>
-                        </div>
-                        <div class='message'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a message sent by an other user</p>
-                        </div>
-                        <div class='message'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a message sent by an other user</p>
-                        </div>
-                        <div class='message'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a message sent by an other user</p>
-                        </div>
-                        <div class='message'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a message sent by an other user</p>
-                        </div>
-                        <p class='date'>19.01.2023</p>
-                        <div class='message'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a message sent by an other user</p>
-                        </div>
-                        <div class='message sent'>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>This is a message sent by the user</p>
-                        </div>
-                    </div>
+                    <div class='messages'>";
+                        $this->showGroupMessages();
+        echo "      </div>
                 </div>
                 <form action='' method='POST' class='chat-controller'>
                     <input type='text' name='message' class='input-field' placeholder='Write message here'>
@@ -252,6 +215,17 @@ class GroupController
             </article>
         </section>
         ";
+    }
+
+    private function showGroupMessages()
+    {
+        /*    <p class='date'>12.01.2023</p>
+                <div class='message'>
+                    <div class='round-image'>
+                        <img src='/src/public_site/media/placeholder.png'>
+                    </div>
+                    <p>This is a longer message sent by the user. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in leo posuere, lacinia est sit amet, cursus risus. Ut ultrices elit ac arcu sodales pretium.</p>
+                </div> */
     }
 
     /**

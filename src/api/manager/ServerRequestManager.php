@@ -33,6 +33,11 @@ class ServerRequestManager
         return explode('/', $uri);
     }
 
+    public static function getGroupIdFromUri()
+    {
+        return self::getUriParts()[4];
+    }
+
     public static function issetCreateUser(): bool
     {
         return isset($_POST[self::CREATE]);
