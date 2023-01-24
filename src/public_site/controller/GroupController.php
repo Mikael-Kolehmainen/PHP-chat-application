@@ -4,7 +4,6 @@ namespace public_site\controller;
 
 use api\manager\ServerRequestManager;
 use api\model\GroupModel;
-use api\model\UserModel;
 use api\model\Database;
 use api\manager\SessionManager;
 
@@ -218,6 +217,21 @@ class GroupController
 
     private function showGroupMessages()
     {
+        $groupModel = new GroupModel($this->db);
+        $groupModel->id = $this->id;
+        $messages = $groupModel->loadGroupMessages();
+
+        foreach ($messages as $message) {
+            /*    <p class='date'>12.01.2023</p> */
+            echo "
+                <div class='message'>
+                    <div class='round-image'>
+                        <img src='/src/public_site/media/placeholder.png'>
+                    </div>
+                    <p>$message->message</p>
+                </div>
+            ";
+        }
         /*    <p class='date'>12.01.2023</p>
                 <div class='message'>
                     <div class='round-image'>

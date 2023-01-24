@@ -8,6 +8,8 @@ class GroupModel
     private const FIELD_ID = 'id';
     private const FIELD_NAME = 'name';
     private const FIELD_IMAGE = 'image';
+    private const MESSAGE_TABLE_NAME = 'messages';
+    private const FIELD_GROUPS_ID = 'groups_id';
 
     /** @var int */
     public $id;
@@ -34,6 +36,26 @@ class GroupModel
         );
         $record = array_pop($records);
         return $this->mapFromDbRecord($record);
+    }
+
+    public function loadGroupMessages()
+    {
+        $records = $this->db->select(
+            'SELECT * FROM ' . self::MESSAGE_TABLE_NAME . ' WHERE ' . self::FIELD_GROUPS_ID . ' = ?',
+            [["s"], [$this->id]]
+        );
+
+        $groupMessages = [];
+        $i = 0;
+        foreach ($records as $record) {
+            $message = new MessageModel($this->db);
+            $message->mapFromDbRecord($record);
+            $groupMessages[$i] = $message;
+
+            $i++;
+        }
+
+        return $groupMessages;
     }
 
     /**
