@@ -88,10 +88,9 @@ class GroupController
 
     private function getUserID(): int
     {
-        $userModel = new UserModel($this->db);
-        $userModel->identifier = SessionManager::getUserIdentifier();
+        $userController = new UserController();
 
-        return $userModel->loadWithIdentifier()->id;
+        return $userController->getId();
     }
 
     /**

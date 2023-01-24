@@ -31,6 +31,12 @@ class MessageController
      */
     public function sendMessage()
     {
+        $this->insertMessageToDatabase();
+        $this->redirectToChat();
+    }
+
+    private function insertMessageToDatabase()
+    {
         $messageModel = new MessageModel($this->db);
         $messageModel->message = ServerRequestManager::postMessage();
         $messageModel->groupsId = ServerRequestManager::getGroupIdFromUri();
@@ -38,8 +44,16 @@ class MessageController
         $messageModel->save();
     }
 
+    private function redirectToChat()
+    {
+        $id = ServerRequestManager::getGroupIdFromUri();
+        header("Location: /index.php/group/chat/$id");
+    }
+
     private function getUsersId(): int
     {
-        
+        $userController = new UserController();
+
+        return $userController->getId();
     }
 }

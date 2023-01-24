@@ -154,6 +154,14 @@ class UserController
         return $userModel->loadGroupsIds();
     }
 
+    public function getId()
+    {
+        $userModel = new UserModel($this->db);
+        $userModel->identifier = SessionManager::getUserIdentifier();
+
+        return $userModel->loadWithIdentifier()->id;
+    }
+
     /**
      *  /index.php/user/create
      */
