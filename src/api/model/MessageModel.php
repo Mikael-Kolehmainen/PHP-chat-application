@@ -2,6 +2,8 @@
 
 namespace api\model;
 
+use public_site\controller\UserController;
+
 class MessageModel
 {
     private const TABLE_NAME = 'messages';
@@ -33,6 +35,9 @@ class MessageModel
 
     /** @var int */
     public $usersId;
+
+    /** @var bool */
+    public $sentByUser;
 
     /** @var Database */
     private $db;
@@ -78,7 +83,15 @@ class MessageModel
         $this->timeOfMessage = $record[self::FIELD_TIME];
         $this->groupsId = $record[self::FIELD_GROUPS_ID];
         $this->usersId = $record[self::FIELD_USERS_ID];
+        $this->sentByUser = $this->sentByUser();
 
         return $this;
+    }
+
+    private function sentByUser(): bool
+    {
+        $userController = new UserController();
+
+        return $this->usersId == $userController->getId();
     }
 }

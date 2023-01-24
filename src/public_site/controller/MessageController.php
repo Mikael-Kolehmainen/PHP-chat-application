@@ -58,4 +58,15 @@ class MessageController
 
         return $userController->getId();
     }
+
+    /**
+     *  /index.php/ajax/get-messages/{group.id}
+     */
+    public function encodeDataToJSON()
+    {
+        $groupController = new GroupController();
+        $groupController->id = ServerRequestManager::getGroupIdFromUri();
+
+        json_encode($groupController->getGroupMessages());
+    }
 }

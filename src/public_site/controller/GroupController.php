@@ -176,6 +176,7 @@ class GroupController
     private function showChatPage()
     {
         echo "
+            <script src='/src/api/js/chat/update-chat.js' defer></script>
         </head>
         <section>
             <article class='box chat'>
@@ -197,8 +198,8 @@ class GroupController
                     </div>
                 </header>
                 <div class='chat-view'>
-                    <div class='messages'>";
-                        $this->showGroupMessages();
+                    <div class='messages' id='messages'>";
+
         echo "      </div>
                 </div>
                 <form action='/index.php/message/insert/$this->id' method='POST' class='chat-controller'>
@@ -215,30 +216,11 @@ class GroupController
         ";
     }
 
-    private function showGroupMessages()
+    public function getGroupMessages()
     {
         $groupModel = new GroupModel($this->db);
         $groupModel->id = $this->id;
-        $messages = $groupModel->loadGroupMessages();
-
-        foreach ($messages as $message) {
-            /*    <p class='date'>12.01.2023</p> */
-            echo "
-                <div class='message'>
-                    <div class='round-image'>
-                        <img src='/src/public_site/media/placeholder.png'>
-                    </div>
-                    <p>$message->message</p>
-                </div>
-            ";
-        }
-        /*    <p class='date'>12.01.2023</p>
-                <div class='message'>
-                    <div class='round-image'>
-                        <img src='/src/public_site/media/placeholder.png'>
-                    </div>
-                    <p>This is a longer message sent by the user. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in leo posuere, lacinia est sit amet, cursus risus. Ut ultrices elit ac arcu sodales pretium.</p>
-                </div> */
+        return $groupModel->loadGroupMessages();
     }
 
     /**

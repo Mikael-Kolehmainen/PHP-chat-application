@@ -131,20 +131,27 @@ section .chat {
       bottom: 0;
       max-height: 100%;
       overflow-y: auto; }
-      section .chat .chat-view .messages .message p {
-        font-family: roboto-light;
-        background-color: #EAEAEA;
-        color: black; }
       section .chat .chat-view .messages .message {
+        position: relative;
         display: flex;
         margin-top: 15px;
         margin-bottom: 15px; }
         section .chat .chat-view .messages .message p {
+          font-family: roboto-light;
+          background-color: #EAEAEA;
+          color: black;
           margin-left: 5px;
           width: 355px;
           border-radius: 5px;
           text-align: justify;
           padding: 10px; }
+        section .chat .chat-view .messages .message .time {
+          font-size: 12px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: transparent; }
         section .chat .chat-view .messages .message.sent {
           flex-direction: row-reverse; }
           section .chat .chat-view .messages .message.sent p {

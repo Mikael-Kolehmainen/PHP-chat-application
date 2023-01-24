@@ -94,7 +94,9 @@ switch ($uri[2]) {
         if (ServerRequestManager::isPost() || ServerRequestManager::isGet()) {
             header('Content-type: Application/json, charset=UTF-8');
             switch ($uri[3]) {
-
+                case "get-messages":
+                    getMessages();
+                    break;
                 case null: default:
                     header("HTTP/1.1 404 Not Found");
                     exit();
@@ -178,6 +180,12 @@ function sendMessageToGroup()
 {
     $messageController = new MessageController();
     $messageController->sendMessage();
+}
+
+function getMessages()
+{
+    $messageController = new MessageController();
+    $messageController->encodeDataToJSON();
 }
 
 function showError($title, $message, $link)
