@@ -10,6 +10,8 @@ class ServerRequestManager
     private const REQUEST_URI = "REQUEST_URI";
     private const CREATE = "create";
     private const LOG_IN = "log-in";
+    private const SEND_MESSAGE = "send-message";
+    private const MESSAGE = "message";
     private const USERNAME = "username";
     private const USER_IMAGE = "user-image";
     private const PASSWORD = "pw";
@@ -46,6 +48,16 @@ class ServerRequestManager
     public static function issetLogIn(): bool
     {
         return isset($_POST[self::LOG_IN]);
+    }
+
+    public static function issetSendMessage(): bool
+    {
+        return isset($_POST[self::SEND_MESSAGE]);
+    }
+
+    public static function postMessage(): string
+    {
+        return $_POST[self::MESSAGE];
     }
 
     public static function postUsername(): string

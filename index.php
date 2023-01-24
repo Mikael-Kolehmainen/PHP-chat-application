@@ -1,6 +1,7 @@
 <?php
 
 use public_site\controller\GroupController;
+use public_site\controller\MessageController;
 use public_site\controller\UserController;
 use public_site\controller\ErrorController;
 use api\manager\ServerRequestManager;
@@ -76,6 +77,17 @@ switch ($uri[2]) {
             case "add-user":
                 showAddUsersForm();
                 break;
+        }
+        break;
+    case "message":
+        if (ServerRequestManager::issetSendMessage()) {
+            sendMessageToGroup();
+        } else {
+            showError(
+                "Error in sending message",
+                "Please send a message in a chat.",
+                "/index.php/message/insert"
+            );
         }
         break;
     case "ajax":
@@ -160,6 +172,12 @@ function showAddUsersForm()
 {
     $groupController = new GroupController();
     $groupController->showAddUsers();
+}
+
+function sendMessageToGroup()
+{
+    $messageController = new MessageController();
+    $messageController->sendMessage();
 }
 
 function showError($title, $message, $link)

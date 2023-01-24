@@ -203,14 +203,14 @@ class GroupController
                         $this->showGroupMessages();
         echo "      </div>
                 </div>
-                <form action='' method='POST' class='chat-controller'>
+                <form action='/index.php/message/insert/$this->id' method='POST' class='chat-controller'>
                     <input type='text' name='message' class='input-field' placeholder='Write message here'>
                     <div class='icon-link-container camera'>
                         <a href='#' class='icon-link'>
                             <i class='fa-solid fa-camera'></i>
                         </a>
                     </div>
-                    <input type='submit' value='SEND' class='btn'>
+                    <input type='submit' name='send-message' value='SEND' class='btn'>
                 </form>
             </article>
         </section>
