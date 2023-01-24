@@ -48,13 +48,17 @@ class MessageModel
             'INSERT INTO ' . self::TABLE_NAME .
                 ' (' .
                 self::FIELD_MESSAGE . ', ' .
+                self::FIELD_DATE . ', ' .
+                self::FIELD_TIME . ', ' .
                 self::FIELD_GROUPS_ID . ', ' .
                 self::FIELD_USERS_ID .
-                ') VALUES (?, ?, ?)',
+                ') VALUES (?, ?, ?, ?, ?)',
             [
-                ['sii'],
+                ['sssii'],
                 [
                     $this->message,
+                    $this->dateOfMessage,
+                    $this->timeOfMessage,
                     $this->groupsId,
                     $this->usersId,
                 ]
@@ -70,6 +74,8 @@ class MessageModel
         $this->id = $record[self::FIELD_ID];
         $this->message = $record[self::FIELD_MESSAGE];
         $this->media = $record[self::FIELD_MEDIA];
+        $this->dateOfMessage = $record[self::FIELD_MESSAGE];
+        $this->timeOfMessage = $record[self::FIELD_TIME];
         $this->groupsId = $record[self::FIELD_GROUPS_ID];
         $this->usersId = $record[self::FIELD_USERS_ID];
 

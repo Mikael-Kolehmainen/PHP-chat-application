@@ -39,6 +39,8 @@ class MessageController
     {
         $messageModel = new MessageModel($this->db);
         $messageModel->message = ServerRequestManager::postMessage();
+        $messageModel->dateOfMessage = date("Y-m-d");
+        $messageModel->timeOfMessage = date("H:i");
         $messageModel->groupsId = ServerRequestManager::getGroupIdFromUri();
         $messageModel->usersId = $this->getUsersId();
         $messageModel->save();
