@@ -29,6 +29,6 @@ class FileModel
 
     public function saveFileToServer(): void
     {
-        move_uploaded_file($this->file["tmp_name"], $this->filePath);
+        move_uploaded_file($this->file["tmp_name"], $_SERVER['DOCUMENT_ROOT'].$this->filePath);
     }
 }

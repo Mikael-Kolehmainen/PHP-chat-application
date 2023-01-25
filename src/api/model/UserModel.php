@@ -38,6 +38,17 @@ class UserModel
     }
 
     /** @return $this */
+    public function load()
+    {
+        $records = $this->db->select(
+            'SELECT * FROM ' . self::TABLE_NAME . ' WHERE ' . self::FIELD_ID . ' = ?',
+            [["s"], [$this->id]]
+        );
+        $record = array_pop($records);
+        return $this->mapFromDbRecord($record);
+    }
+
+    /** @return $this */
     public function loadWithUsername()
     {
         $records = $this->db->select(

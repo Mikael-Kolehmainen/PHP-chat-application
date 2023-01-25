@@ -36,6 +36,9 @@ class MessageModel
     /** @var int */
     public $usersId;
 
+    /** @var string */
+    public $userImage;
+
     /** @var bool */
     public $sentByUser;
 
@@ -83,9 +86,18 @@ class MessageModel
         $this->timeOfMessage = $record[self::FIELD_TIME];
         $this->groupsId = $record[self::FIELD_GROUPS_ID];
         $this->usersId = $record[self::FIELD_USERS_ID];
+        $this->userImage = $this->getUserImagePath();
         $this->sentByUser = $this->sentByUser();
 
         return $this;
+    }
+
+    private function getUserImagePath(): string
+    {
+        $userController = new UserController();
+        $userController->id = $this->usersId;
+
+        return $userController->getImagePath();
     }
 
     private function sentByUser(): bool

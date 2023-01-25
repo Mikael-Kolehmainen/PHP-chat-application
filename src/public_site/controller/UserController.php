@@ -93,7 +93,7 @@ class UserController
     private function saveUserImageToServer(): void
     {
         $fileName = RandomString::getRandomString(10);
-        $fileModel = new FileModel(ServerRequestManager::filesUserImage(), $_SERVER['DOCUMENT_ROOT']."/src/public_site/media/users/$fileName");
+        $fileModel = new FileModel(ServerRequestManager::filesUserImage(), "/src/public_site/media/users/$fileName");
         $this->imagePath = $fileModel->createFilePath();
         $fileModel->saveFileToServer();
     }
@@ -160,6 +160,14 @@ class UserController
         $userModel->identifier = SessionManager::getUserIdentifier();
 
         return $userModel->loadWithIdentifier()->id;
+    }
+
+    public function getImagePath()
+    {
+        $userModel = new UserModel($this->db);
+        $userModel->id = $this->id;
+
+        return $userModel->load()->image;
     }
 
     /**

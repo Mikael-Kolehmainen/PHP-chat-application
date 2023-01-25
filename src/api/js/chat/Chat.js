@@ -17,7 +17,7 @@ class Chat
         let i = 0;
         this.messagesData.forEach(message => {
             messageObj.message = message.message;
-        //    messageObj.userImage = message.userImage;
+            messageObj.userImage = message.userImage;
             messageObj.media = message.media;
             messageObj.timeOfMessage = message.timeOfMessage.substring(0, 5);
             messageObj.sentByUser = message.sentByUser;
