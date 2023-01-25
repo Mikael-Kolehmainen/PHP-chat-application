@@ -207,7 +207,7 @@ class GroupController
         echo "      </div>
                 </div>
                 <form action='/index.php/message/insert/$this->id' method='POST' class='chat-controller'>
-                    <input type='text' name='message' class='input-field' placeholder='Write message here'>
+                    <input type='text' name='message' class='input-field' placeholder='Write message here' required>
                     <div class='icon-link-container camera'>
                         <a href='#' class='icon-link'>
                             <i class='fa-solid fa-camera'></i>

@@ -60,8 +60,8 @@ section {
                     .time {
                         font-size: 12px;
                         position: absolute;
-                        top: 70%;
-                        left: 81.5%;
+                        bottom: 0%;
+                        right: 0%;
                         transform: translate(-50%, -50%);
                         background-color: transparent;
                     }
@@ -72,6 +72,9 @@ section {
                             margin-left: 0;
                             margin-right: 5px;
                             background-color: rgb(200, 200, 200);
+                        }
+                        .time {
+                            right: 12.5%;
                         }
                     }
                 }

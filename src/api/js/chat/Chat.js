@@ -22,14 +22,14 @@ class Chat
             messageObj.timeOfMessage = message.timeOfMessage.substring(0, 5);
             messageObj.sentByUser = message.sentByUser;
 
-            if (!datesOfMessages.includes(message.dateOfMessage)) {
-                const messageDateObj = new Date(message.dateOfMessage);
-                const day = messageDateObj.getDate();
-                const month = messageDateObj.getMonth() + 1;
-                const year = messageDateObj.getFullYear();
-                const messageDate = day + "." + month + "." + year;
+            const messageDateObj = new Date(message.dateOfMessage);
+            const day = messageDateObj.getDate();
+            const month = messageDateObj.getMonth() + 1;
+            const year = messageDateObj.getFullYear();
+            const messageDate = day + "." + month + "." + year;
 
-                message.dateOfMessage = messageDate;
+            if (!datesOfMessages.includes(messageDate)) {
+                messageObj.dateOfMessage = messageDate;
 
                 const messageDateElement = messageObj.createDateElement();
                 chatElement.appendChild(messageDateElement);

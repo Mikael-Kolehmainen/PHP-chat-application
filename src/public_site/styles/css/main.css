@@ -149,8 +149,8 @@ section .chat {
         section .chat .chat-view .messages .message .time {
           font-size: 12px;
           position: absolute;
-          top: 70%;
-          left: 81.5%;
+          bottom: 0%;
+          right: 0%;
           transform: translate(-50%, -50%);
           background-color: transparent; }
         section .chat .chat-view .messages .message.sent {
@@ -159,6 +159,8 @@ section .chat {
             margin-left: 0;
             margin-right: 5px;
             background-color: #c8c8c8; }
+          section .chat .chat-view .messages .message.sent .time {
+            right: 12.5%; }
       section .chat .chat-view .messages .date {
         position: sticky;
         top: 10px;

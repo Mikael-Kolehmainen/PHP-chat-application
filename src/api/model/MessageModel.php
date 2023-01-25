@@ -82,7 +82,7 @@ class MessageModel
         $this->id = $record[self::FIELD_ID];
         $this->message = $record[self::FIELD_MESSAGE];
         $this->media = $record[self::FIELD_MEDIA];
-        $this->dateOfMessage = $record[self::FIELD_MESSAGE];
+        $this->dateOfMessage = $record[self::FIELD_DATE];
         $this->timeOfMessage = $record[self::FIELD_TIME];
         $this->groupsId = $record[self::FIELD_GROUPS_ID];
         $this->usersId = $record[self::FIELD_USERS_ID];
