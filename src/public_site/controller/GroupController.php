@@ -10,7 +10,7 @@ use api\manager\SessionManager;
 class GroupController
 {
     /** @var int */
-    private $id;
+    public $id;
 
     /** @var string */
     private $groupName;
@@ -176,6 +176,10 @@ class GroupController
     private function showChatPage()
     {
         echo "
+            <script src='/src/api/js/remove-children.js' defer></script>
+            <script src='/src/api/js/data/Data.js' defer></script>
+            <script src='/src/api/js/chat/Message.js' defer></script>
+            <script src='/src/api/js/chat/Chat.js' defer></script>
             <script src='/src/api/js/chat/update-chat.js' defer></script>
         </head>
         <section>

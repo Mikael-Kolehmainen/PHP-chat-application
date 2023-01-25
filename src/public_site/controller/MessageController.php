@@ -67,6 +67,6 @@ class MessageController
         $groupController = new GroupController();
         $groupController->id = ServerRequestManager::getGroupIdFromUri();
 
-        json_encode($groupController->getGroupMessages());
+        echo json_encode($groupController->getGroupMessages());
     }
 }

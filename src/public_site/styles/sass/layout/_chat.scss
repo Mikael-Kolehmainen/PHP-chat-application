@@ -47,8 +47,10 @@ section {
 
                     p {
                         font-family: $light-font;
-                        background-color: $input-background-color;
                         color: $font-secondary-color;
+                    }
+                    p:not(.time) {
+                        background-color: $input-background-color;
                         margin-left: 5px;
                         width: 355px;
                         border-radius: 5px;
@@ -58,15 +60,15 @@ section {
                     .time {
                         font-size: 12px;
                         position: absolute;
-                        top: 50%;
-                        left: 50%;
+                        top: 70%;
+                        left: 81.5%;
                         transform: translate(-50%, -50%);
                         background-color: transparent;
                     }
                     &.sent {
                         flex-direction: row-reverse;
 
-                        p {
+                        p:not(.time) {
                             margin-left: 0;
                             margin-right: 5px;
                             background-color: rgb(200, 200, 200);

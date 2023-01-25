@@ -138,8 +138,9 @@ section .chat {
         margin-bottom: 15px; }
         section .chat .chat-view .messages .message p {
           font-family: roboto-light;
+          color: black; }
+        section .chat .chat-view .messages .message p:not(.time) {
           background-color: #EAEAEA;
-          color: black;
           margin-left: 5px;
           width: 355px;
           border-radius: 5px;
@@ -148,13 +149,13 @@ section .chat {
         section .chat .chat-view .messages .message .time {
           font-size: 12px;
           position: absolute;
-          top: 50%;
-          left: 50%;
+          top: 70%;
+          left: 81.5%;
           transform: translate(-50%, -50%);
           background-color: transparent; }
         section .chat .chat-view .messages .message.sent {
           flex-direction: row-reverse; }
-          section .chat .chat-view .messages .message.sent p {
+          section .chat .chat-view .messages .message.sent p:not(.time) {
             margin-left: 0;
             margin-right: 5px;
             background-color: #c8c8c8; }

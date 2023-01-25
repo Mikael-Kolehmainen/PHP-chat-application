@@ -97,6 +97,9 @@ switch ($uri[2]) {
                 case "get-messages":
                     getMessages();
                     break;
+                case "send-message":
+
+                    break;
                 case null: default:
                     header("HTTP/1.1 404 Not Found");
                     exit();
