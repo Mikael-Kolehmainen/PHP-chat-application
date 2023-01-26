@@ -165,6 +165,14 @@ class UserController
         $userModel->saveUsersToGroup();
     }
 
+    public function addUsersToGroup()
+    {
+        foreach ($_POST as $name => $value) {
+            $userId = explode("-", $name)[2];
+            
+        }
+    }
+
     public function getId()
     {
         $userModel = new UserModel($this->db);

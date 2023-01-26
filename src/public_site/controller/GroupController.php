@@ -8,6 +8,7 @@ use api\model\GroupModel;
 use api\model\Database;
 use api\model\FileModel;
 use api\misc\RandomString;
+use api\model\UserModel;
 
 class GroupController
 {
@@ -275,55 +276,60 @@ class GroupController
      */
     public function showAddUsers()
     {
+        $this->getGroupDetails();
+        $this->showAddUsersPage();
+    }
+    
+    private function showAddUsersPage()
+    {
         echo "
         </head>
         <section>
             <article class='box add-users'>
-                <h1>ADD USERS TO GROUPNAME</h1>
-                <form action='' method='POST'>
+                <h1>ADD USERS TO<br>$this->groupName</h1>
+                <form action='/index.php/group/insert-user/$this->id' method='POST'>
                     <input type='text' placeholder='Search here (username)' class='search-field input-field'>
-                    <ul class='list-image-title'>
-                        <li>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>USERNAME</p>
-                            <input type='checkbox' name='username-checkbox'>
-                        </li>
-                        <li>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>USERNAME</p>
-                            <input type='checkbox' name='username-checkbox'>
-                        </li>
-                        <li>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>USERNAME</p>
-                            <input type='checkbox' name='username-checkbox'>
-                        </li>
-                        <li>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>USERNAME</p>
-                            <input type='checkbox' name='username-checkbox'>
-                        </li>
-                        <li>
-                            <div class='round-image'>
-                                <img src='/src/public_site/media/placeholder.png'>
-                            </div>
-                            <p>USERNAME</p>
-                            <input type='checkbox' name='username-checkbox'>
-                        </li>
+                    <ul class='list-image-title'>";
+                        $this->showAllUsersNotInGroup();
+        echo "                
                     </ul>
-                    <input type='submit' class='btn' value='ADD'>
+                    <input type='submit' class='btn' value='ADD' name='group-add-user'>
                 </form>
-                <a href='/index.php/group/chat'>Go back</a>
+                <a href='/index.php/group/chat/$this->id'>Go back</a>
             </article>
         </section>
         ";
+    }
+
+    private function showAllUsersNotInGroup()
+    {
+        $userModel = new UserModel($this->db);
+        $users = $userModel->loadAll();
+        
+        $groupModel = new GroupModel($this->db);
+        $groupModel->id = $this->id;
+        $groupMembers = $groupModel->loadGroupMembers();
+
+        foreach ($users as $user) {
+            $alreadyGroupMember = false;
+
+            foreach ($groupMembers as $member) {
+                if ($user->id == $member->id) {
+                    $alreadyGroupMember = true;
+                }
+            }
+
+            if (!$alreadyGroupMember) {
+                echo "
+                <li>
+                    <div class='round-image'>
+                        <img src='$user->image'>
+                    </div>
+                    <p>$user->username</p>
+                    <input type='checkbox' name='username-checkbox-$this->id'>
+                </li>
+                ";
+            }
+        }
     }
 }

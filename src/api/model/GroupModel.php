@@ -10,6 +10,7 @@ class GroupModel
     private const FIELD_IMAGE = 'image';
     private const MESSAGE_TABLE_NAME = 'messages';
     private const FIELD_GROUPS_ID = 'groups_id';
+    private const USER_GROUPS_TABLE_NAME = 'users_groups';
 
     /** @var int */
     public $id;
@@ -75,7 +76,25 @@ class GroupModel
         return $groupMessages;
     }
 
+    public function loadGroupMembers()
+    {
+        $records = $this->db->select(
+            'SELECT * FROM ' . self::USER_GROUPS_TABLE_NAME . ' WHERE ' . self::FIELD_GROUPS_ID . ' = ?',
+            [["s"], [$this->id]]
+        );
 
+        $groupMembers = [];
+        $i = 0;
+        foreach ($records as $record) {
+            $user = new UserModel($this->db);
+            $user->id = $record["users_id"];
+            $groupMembers[$i] = $user->load();
+
+            $i++;
+        }
+
+        return $groupMembers;
+    }
 
     /**
      * @param mixed[] $record Associative array of one db record

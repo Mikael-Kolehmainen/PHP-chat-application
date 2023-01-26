@@ -11,8 +11,8 @@ class UserModel
     private const FIELD_PW = 'pw';
     private const FIELD_IDENTIFIER = 'identifier';
     private const USER_GROUPS_TABLE_NAME = 'users_groups';
-    private const USERS_ID = 'users_id';
-    private const GROUPS_ID = 'groups_id';
+    private const FIELD_USERS_ID = 'users_id';
+    private const FIELD_GROUPS_ID = 'groups_id';
 
     /** @var int */
     public $id;
@@ -49,6 +49,25 @@ class UserModel
         );
         $record = array_pop($records);
         return $this->mapFromDbRecord($record);
+    }
+
+    public function loadAll()
+    {
+        $records = $this->db->select(
+            'SELECT * FROM ' . self::TABLE_NAME
+        );
+
+        $users = [];
+        $i = 0;
+        foreach ($records as $record) {
+            $user = new UserModel($this->db);
+            $user->mapFromDbRecord($record);
+            $users[$i] = $user;
+
+            $i++;
+        }
+
+        return $users;
     }
 
     /** @return $this */
@@ -97,14 +116,14 @@ class UserModel
     public function loadGroupsIds()
     {
         $records = $this->db->select(
-            'SELECT * FROM ' . self::USER_GROUPS_TABLE_NAME . ' WHERE ' . self::USERS_ID . ' = ?',
+            'SELECT * FROM ' . self::USER_GROUPS_TABLE_NAME . ' WHERE ' . self::FIELD_USERS_ID . ' = ?',
             [["s"], [$this->id]]
         );
 
         $IDs = [];
         $i = 0;
         foreach ($records as $record) {
-            $IDs[$i] = $record[self::GROUPS_ID];
+            $IDs[$i] = $record[self::FIELD_GROUPS_ID];
 
             $i++;
         }
@@ -117,8 +136,8 @@ class UserModel
         return $this->db->insert(
             'INSERT INTO ' . self::USER_GROUPS_TABLE_NAME .
                 ' (' .
-                self::USERS_ID . ', ' .
-                self::GROUPS_ID . 
+                self::FIELD_USERS_ID . ', ' .
+                self::FIELD_GROUPS_ID . 
                 ') VALUES (?, ?)',
             [
                 ['ss'],

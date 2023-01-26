@@ -18,6 +18,7 @@ class ServerRequestManager
     private const CREATE_GROUP = "create-group";
     private const GROUP_NAME = "group-name";
     private const GROUP_IMAGE = "group-image";
+    private const GROUP_ADD_USER = "group-add-user";
 
     public static function isPost(): bool
     {
@@ -91,5 +92,10 @@ class ServerRequestManager
     public static function filesGroupImage(): array
     {
         return $_FILES[self::GROUP_IMAGE];
+    }
+
+    public static function issetGroupAddUser(): bool
+    {
+        return isset($_POST[self::GROUP_ADD_USER]);
     }
 }

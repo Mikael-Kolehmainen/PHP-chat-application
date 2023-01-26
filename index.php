@@ -77,6 +77,17 @@ switch ($uri[2]) {
             case "add-user":
                 showAddUsersForm();
                 break;
+            case "insert-user":
+                if (ServerRequestManager::issetGroupAddUser()) {
+                    saveUsersAsGroupMember();
+                } else {
+                    showError(
+                        "Error in adding users to group",
+                        "Please fill the form on the add users to group page",
+                        "/index.php/groups"
+                    );
+                }
+                break;
             case "insert":
                 if (ServerRequestManager::issetCreateGroup()) {
                     saveGroupDetails();
@@ -107,9 +118,6 @@ switch ($uri[2]) {
             switch ($uri[3]) {
                 case "get-messages":
                     getMessages();
-                    break;
-                case "send-message":
-
                     break;
                 case null: default:
                     header("HTTP/1.1 404 Not Found");
@@ -188,6 +196,12 @@ function showAddUsersForm(): void
 {
     $groupController = new GroupController();
     $groupController->showAddUsers();
+}
+
+function saveUsersAsGroupMember(): void
+{
+    $userController = new UserController();
+    $userController->addUsersToGroup();
 }
 
 function saveGroupDetails(): void
