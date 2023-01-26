@@ -217,6 +217,7 @@ class UserController
     public function showCreateForm(): void
     {
         echo "
+            <title>Chat-app | Create User</title>
             <script src='/src/public_site/js/file-functions.js' defer></script>
             <script src='/src/public_site/js/password-validation.js' defer></script>
         </head>
@@ -252,6 +253,7 @@ class UserController
     public function showLogInForm(): void
     {
         echo "
+            <title>Chat-app | Login</title>
         </head>
         <section>
             <article class='box login'>

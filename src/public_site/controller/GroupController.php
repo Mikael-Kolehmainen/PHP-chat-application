@@ -102,7 +102,7 @@ class GroupController
     public function showCreateGroup()
     {
         echo "
-            <title>Chat-app | Create group</title>
+            <title>Chat-app | Create Group</title>
             <script src='/src/public_site/js/file-functions.js' defer></script
         </head>
         <section>
@@ -325,6 +325,7 @@ class GroupController
     private function showAddUsersPage()
     {
         echo "
+            <title>Chat-app | Add users to group</title>
             <script src='/src/public_site/js/user-search.js' defer></script>
         </head>
         <section>
