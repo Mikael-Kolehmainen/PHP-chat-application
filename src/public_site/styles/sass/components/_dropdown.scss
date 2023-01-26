@@ -16,8 +16,9 @@
 
         li {
             display: flex;
-            margin-top: 5px;
-            margin-bottom: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid $primary-color;
 
             p {
                 margin-top: auto;

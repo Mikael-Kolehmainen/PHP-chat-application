@@ -45,6 +45,7 @@ class GroupController
     private function showGroupsPage()
     {
         echo "
+            <title>Chat-app | Chats</title>
         </head>
         <section>
             <article class='box groups'>
@@ -101,6 +102,7 @@ class GroupController
     public function showCreateGroup()
     {
         echo "
+            <title>Chat-app | Create group</title>
             <script src='/src/public_site/js/file-functions.js' defer></script
         </head>
         <section>
@@ -221,6 +223,7 @@ class GroupController
     private function showChatPage()
     {
         echo "
+            <title>Chat-app | Chat</title>
             <script src='/src/public_site/js/ElementDisplay.js' defer></script>
             <script src='/src/public_site/js/Dropdown.js' defer></script>
             <script src='/src/api/js/remove-children.js' defer></script>
@@ -248,80 +251,9 @@ class GroupController
                         </a>
                     </div>
                     <div class='dropdown' id='group-members-list' style='display: none;'>
-                        <ul>
-                            <li>
-                                <div class='round-image'>
-                                    <img src='/src/public_site/media/placeholder.png'>
-                                </div>
-                                <p>USERNAME</p>
-                            </li>
-                            <li>
-                                <div class='round-image'>
-                                    <img src='/src/public_site/media/placeholder.png'>
-                                </div>
-                                <p>USERNAME</p>
-                            </li>
-                            <li>
-                                <div class='round-image'>
-                                    <img src='/src/public_site/media/placeholder.png'>
-                                </div>
-                                <p>USERNAME</p>
-                            </li>
-                            <li>
-                                <div class='round-image'>
-                                    <img src='/src/public_site/media/placeholder.png'>
-                                </div>
-                                <p>USERNAME</p>
-                            </li>
-                            <li>
-                                <div class='round-image'>
-                                    <img src='/src/public_site/media/placeholder.png'>
-                                </div>
-                                <p>USERNAME</p>
-                            </li>
-                            <li>
-                                <div class='round-image'>
-                                    <img src='/src/public_site/media/placeholder.png'>
-                                </div>
-                                <p>USERNAME</p>
-                            </li>
-                            <li>
-                                <div class='round-image'>
-                                    <img src='/src/public_site/media/placeholder.png'>
-                                </div>
-                                <p>USERNAME</p>
-                            </li>
-                            <li>
-                                <div class='round-image'>
-                                    <img src='/src/public_site/media/placeholder.png'>
-                                </div>
-                                <p>USERNAME</p>
-                            </li>
-                            <li>
-                                <div class='round-image'>
-                                    <img src='/src/public_site/media/placeholder.png'>
-                                </div>
-                                <p>USERNAME</p>
-                            </li>
-                            <li>
-                                <div class='round-image'>
-                                    <img src='/src/public_site/media/placeholder.png'>
-                                </div>
-                                <p>USERNAME</p>
-                            </li>
-                            <li>
-                                <div class='round-image'>
-                                    <img src='/src/public_site/media/placeholder.png'>
-                                </div>
-                                <p>USERNAME</p>
-                            </li>
-                            <li>
-                                <div class='round-image'>
-                                    <img src='/src/public_site/media/placeholder.png'>
-                                </div>
-                                <p>USERNAME</p>
-                            </li>
-                        </ul>
+                        <ul>";
+                            $this->showGroupMembers();
+        echo "          </ul>
                     </div>
                     <div class='icon-link-container add-users-icon'>
                         <a href='/index.php/group/add-user/$this->id' class='icon-link'>
@@ -346,6 +278,32 @@ class GroupController
             </article>
         </section>
         ";
+    }
+
+    /*
+    <li>
+        <div class='round-image'>
+            <img src='/src/public_site/media/placeholder.png'>
+        </div>
+        <p>USERNAME</p>
+    </li>
+    */
+    private function showGroupMembers()
+    {
+        $groupModel = new GroupModel($this->db);
+        $groupModel->id = $this->id;
+        $groupMembers = $groupModel->loadGroupMembers();
+
+        foreach ($groupMembers as $member) {
+            echo "
+                <li>
+                    <div class='round-image'>
+                        <img src='$member->image'>
+                    </div>
+                    <p>$member->username</p>
+                </li>
+            ";
+        }
     }
 
     public function getGroupMessages()

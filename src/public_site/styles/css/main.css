@@ -93,8 +93,9 @@
     height: 100%; }
     .dropdown ul li {
       display: flex;
-      margin-top: 5px;
-      margin-bottom: 5px; }
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #5BC0F8; }
       .dropdown ul li p {
         margin-top: auto;
         margin-bottom: auto; }

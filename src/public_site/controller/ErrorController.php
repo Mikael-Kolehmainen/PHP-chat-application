@@ -23,6 +23,7 @@ class ErrorController
     public function showErrorPage(): void
     {
         echo "
+            <title>$this->title</title>
         </head>
         <section>
             <article class='box error'>

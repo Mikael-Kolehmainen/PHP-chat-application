@@ -10,6 +10,7 @@ class CameraController
     public function showCameraPage()
     {
         echo "
+            <title>Chat-app | Camera</title>
             <script src='/src/public_site/js/Style.js' defer></script>
             <script src='/src/public_site/js/ElementDisplay.js' defer></script>
             <script src='/src/api/js/data/Data.js' defer></script>
