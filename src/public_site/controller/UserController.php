@@ -91,8 +91,8 @@ class UserController
 
     private function saveUserImageToServer(): void
     {
-        $fileName = RandomString::getRandomString(10);
         $fileModel = new FileModel(ServerRequestManager::filesUserImage(), "/src/public_site/media/users/$fileName");
+        $fileModel->generateFileName();
         $this->imagePath = $fileModel->createFilePath();
         $fileModel->saveFileToServer();
     }

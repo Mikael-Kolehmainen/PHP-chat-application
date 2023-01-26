@@ -8,7 +8,6 @@ use api\manager\RedirectManager;
 use api\model\GroupModel;
 use api\model\Database;
 use api\model\FileModel;
-use api\misc\RandomString;
 use api\model\UserModel;
 
 class GroupController
@@ -138,8 +137,8 @@ class GroupController
 
     private function saveGroupImageToServer()
     {
-        $fileName = RandomString::getRandomString(10);
         $fileModel = new FileModel(ServerRequestManager::filesGroupImage(), "/src/public_site/media/groups/$fileName");
+        $fileModel->generateFileName();
         $this->imagePath = $fileModel->createFilePath();
         $fileModel->saveFileToServer();
     }

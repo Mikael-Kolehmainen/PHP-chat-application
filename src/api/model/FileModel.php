@@ -2,6 +2,8 @@
 
 namespace api\model;
 
+use api\misc\RandomString;
+
 class FileModel
 {
     /** @var int */
@@ -17,6 +19,15 @@ class FileModel
     {
         $this->file = $file;
         $this->filePath = $filePath;
+    }
+
+    public function generateFileName(): void
+    {
+        $this->filePath = $this->filePath . RandomString::getRandomString(10);
+
+        if (file_exists(($this->filePath))) {
+            $this->generateFileName();
+        }
     }
 
     public function createFilePath(): string
