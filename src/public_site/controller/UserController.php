@@ -160,17 +160,9 @@ class UserController
     public function addToGroup()
     {
         $userModel = new UserModel($this->db);
-        $userModel->id = $this->getId();
+        $userModel->id = $this->id;
         $userModel->groupsId = $this->groupsId;
         $userModel->saveUsersToGroup();
-    }
-
-    public function addUsersToGroup()
-    {
-        foreach ($_POST as $name => $value) {
-            $userId = explode("-", $name)[2];
-            
-        }
     }
 
     public function getId()
@@ -179,6 +171,36 @@ class UserController
         $userModel->identifier = SessionManager::getUserIdentifier();
 
         return $userModel->loadWithIdentifier()->id;
+    }
+
+    /**
+     *  /index.php/group/insert-user/{group.id}
+     */
+    public function addUsersToGroup()
+    {
+        $this->insertUsersToGroup();
+        $this->redirectToGroup();
+    }
+
+    private function insertUsersToGroup()
+    {
+        $this->groupsId = ServerRequestManager::getGroupIdFromUri();
+
+        // checkbox name is 'username-checkbox-{userid}'
+        foreach ($_POST as $name => $value) {
+            $name = explode("-", $name);
+            if ($name[0] == "username"
+                && $name[1] == "checkbox") {
+                $this->id = $name[2];
+                $this->addToGroup();
+            }
+
+        }
+    }
+
+    private function redirectToGroup()
+    {
+        header("Location: /index.php/group/chat/$this->groupsId");
     }
 
     public function getImagePath()

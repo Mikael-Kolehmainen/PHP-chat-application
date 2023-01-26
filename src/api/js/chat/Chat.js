@@ -24,7 +24,10 @@ class Chat
 
             const messageDateObj = new Date(message.dateOfMessage);
             const day = messageDateObj.getDate();
-            const month = messageDateObj.getMonth() + 1;
+            let month = messageDateObj.getMonth() + 1;
+            if (month < 10) {
+                month = "0" + month;
+            }
             const year = messageDateObj.getFullYear();
             const messageDate = day + "." + month + "." + year;
 

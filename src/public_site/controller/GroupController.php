@@ -153,6 +153,7 @@ class GroupController
     {
         $userController = new UserController();
         $userController->groupsId = $this->id;
+        $userController->id = $userController->getId();
         $userController->addToGroup();
     }
 
@@ -279,19 +280,20 @@ class GroupController
         $this->getGroupDetails();
         $this->showAddUsersPage();
     }
-    
+
     private function showAddUsersPage()
     {
         echo "
+            <script src='/src/public_site/js/user-search.js' defer></script>
         </head>
         <section>
             <article class='box add-users'>
                 <h1>ADD USERS TO<br>$this->groupName</h1>
                 <form action='/index.php/group/insert-user/$this->id' method='POST'>
-                    <input type='text' placeholder='Search here (username)' class='search-field input-field'>
-                    <ul class='list-image-title'>";
+                    <input type='text' placeholder='Search here (username)' id='user-search' class='search-field input-field'>
+                    <ul class='list-image-title' id='user-list'>";
                         $this->showAllUsersNotInGroup();
-        echo "                
+        echo "
                     </ul>
                     <input type='submit' class='btn' value='ADD' name='group-add-user'>
                 </form>
@@ -305,7 +307,7 @@ class GroupController
     {
         $userModel = new UserModel($this->db);
         $users = $userModel->loadAll();
-        
+
         $groupModel = new GroupModel($this->db);
         $groupModel->id = $this->id;
         $groupMembers = $groupModel->loadGroupMembers();
@@ -326,7 +328,7 @@ class GroupController
                         <img src='$user->image'>
                     </div>
                     <p>$user->username</p>
-                    <input type='checkbox' name='username-checkbox-$this->id'>
+                    <input type='checkbox' name='username-checkbox-$user->id'>
                 </li>
                 ";
             }
