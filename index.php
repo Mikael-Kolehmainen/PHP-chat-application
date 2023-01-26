@@ -2,6 +2,7 @@
 
 use public_site\controller\GroupController;
 use public_site\controller\MessageController;
+use public_site\controller\CameraController;
 use public_site\controller\UserController;
 use public_site\controller\ErrorController;
 use api\manager\ServerRequestManager;
@@ -73,6 +74,9 @@ switch ($uri[2]) {
                 break;
             case "chat":
                 showGroupChat();
+                break;
+            case "camera":
+                showCamera();
                 break;
             case "add-user":
                 showAddUsersForm();
@@ -190,6 +194,12 @@ function showGroupChat(): void
 {
     $groupController = new GroupController();
     $groupController->showChat();
+}
+
+function showCamera(): void
+{
+    $cameraController = new CameraController();
+    $cameraController->showCameraPage();
 }
 
 function showAddUsersForm(): void

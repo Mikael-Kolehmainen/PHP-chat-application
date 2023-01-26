@@ -254,7 +254,7 @@ class GroupController
                 <form action='/index.php/message/insert/$this->id' method='POST' class='chat-controller'>
                     <input type='text' name='message' class='input-field' placeholder='Write message here' required>
                     <div class='icon-link-container camera'>
-                        <a href='#' class='icon-link'>
+                        <a href='/index.php/group/camera/$this->id' class='icon-link'>
                             <i class='fa-solid fa-camera'></i>
                         </a>
                     </div>
