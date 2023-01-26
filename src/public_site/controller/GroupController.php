@@ -221,6 +221,8 @@ class GroupController
     private function showChatPage()
     {
         echo "
+            <script src='/src/public_site/js/ElementDisplay.js' defer></script>
+            <script src='/src/public_site/js/Dropdown.js' defer></script>
             <script src='/src/api/js/remove-children.js' defer></script>
             <script src='/src/api/js/data/Data.js' defer></script>
             <script src='/src/api/js/chat/Message.js' defer></script>
@@ -240,6 +242,87 @@ class GroupController
                     </div>
                     <h1>$this->groupName</h1>
 
+                    <div class='icon-link-container members-icon' id='members-dropdown-btn'>
+                        <a href='#' class='icon-link'>
+                            <i class='fa-solid fa-users'></i>
+                        </a>
+                    </div>
+                    <div class='dropdown' id='group-members-list' style='display: none;'>
+                        <ul>
+                            <li>
+                                <div class='round-image'>
+                                    <img src='/src/public_site/media/placeholder.png'>
+                                </div>
+                                <p>USERNAME</p>
+                            </li>
+                            <li>
+                                <div class='round-image'>
+                                    <img src='/src/public_site/media/placeholder.png'>
+                                </div>
+                                <p>USERNAME</p>
+                            </li>
+                            <li>
+                                <div class='round-image'>
+                                    <img src='/src/public_site/media/placeholder.png'>
+                                </div>
+                                <p>USERNAME</p>
+                            </li>
+                            <li>
+                                <div class='round-image'>
+                                    <img src='/src/public_site/media/placeholder.png'>
+                                </div>
+                                <p>USERNAME</p>
+                            </li>
+                            <li>
+                                <div class='round-image'>
+                                    <img src='/src/public_site/media/placeholder.png'>
+                                </div>
+                                <p>USERNAME</p>
+                            </li>
+                            <li>
+                                <div class='round-image'>
+                                    <img src='/src/public_site/media/placeholder.png'>
+                                </div>
+                                <p>USERNAME</p>
+                            </li>
+                            <li>
+                                <div class='round-image'>
+                                    <img src='/src/public_site/media/placeholder.png'>
+                                </div>
+                                <p>USERNAME</p>
+                            </li>
+                            <li>
+                                <div class='round-image'>
+                                    <img src='/src/public_site/media/placeholder.png'>
+                                </div>
+                                <p>USERNAME</p>
+                            </li>
+                            <li>
+                                <div class='round-image'>
+                                    <img src='/src/public_site/media/placeholder.png'>
+                                </div>
+                                <p>USERNAME</p>
+                            </li>
+                            <li>
+                                <div class='round-image'>
+                                    <img src='/src/public_site/media/placeholder.png'>
+                                </div>
+                                <p>USERNAME</p>
+                            </li>
+                            <li>
+                                <div class='round-image'>
+                                    <img src='/src/public_site/media/placeholder.png'>
+                                </div>
+                                <p>USERNAME</p>
+                            </li>
+                            <li>
+                                <div class='round-image'>
+                                    <img src='/src/public_site/media/placeholder.png'>
+                                </div>
+                                <p>USERNAME</p>
+                            </li>
+                        </ul>
+                    </div>
                     <div class='icon-link-container add-users-icon'>
                         <a href='/index.php/group/add-user/$this->id' class='icon-link'>
                             <i class='fa-solid fa-user-plus'></i>

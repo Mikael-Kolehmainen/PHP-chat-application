@@ -3,10 +3,14 @@
 
 @import './abstract/variables';
 
+// COMPONENTS
+
+@import './components/box';
+@import './components/dropdown';
+
 // LAYOUT
 
 @import './layout/create-user';
-@import './layout/box';
 @import './layout/groups';
 @import './layout/chat';
 @import './layout/add_users';

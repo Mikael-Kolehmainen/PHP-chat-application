@@ -1,7 +1,7 @@
 class ElementDisplay
 {
-    static change(element, display)
+    static change(elementId, display)
     {
-        document.getElementById(element).style.display = display;
+        document.getElementById(elementId).style.display = display;
     }
 }
