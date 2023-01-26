@@ -4,6 +4,7 @@ namespace public_site\controller;
 
 use api\manager\ServerRequestManager;
 use api\manager\SessionManager;
+use api\manager\RedirectManager;
 use api\model\UserModel;
 use api\model\GroupModel;
 use api\model\FileModel;
@@ -32,11 +33,6 @@ class UserController
         $this->db = new Database();
     }
 
-    public function redirectToUserGroups()
-    {
-        header("Location: /index.php/groups");
-    }
-
     /**
      *  /index.php/user/select
      */
@@ -44,7 +40,7 @@ class UserController
     {
         if ($this->checkCredentials()) {
             $this->saveIdentifierToSession();
-            $this->redirectToUserGroups();
+            RedirectManager::redirectToGroups();
         } else {
             $this->showLogInError();
         }
@@ -79,7 +75,7 @@ class UserController
             $this->saveUserImageToServer();
             $this->insertUserToDatabase();
             $this->saveIdentifierToSession();
-            $this->redirectToUserGroups();
+            RedirectManager::redirectToGroups();
         } else {
             $this->showCreationError();
         }
@@ -127,7 +123,7 @@ class UserController
     public function logOut(): void
     {
         SessionManager::deleteUserIdentifier();
-        header("Location: /index.php/user/log-in");
+        RedirectManager::redirectToLogIn();
     }
 
     /**
@@ -179,7 +175,7 @@ class UserController
     public function addUsersToGroup()
     {
         $this->insertUsersToGroup();
-        $this->redirectToGroup();
+        RedirectManager::redirectToChat($this->groupsId);
     }
 
     private function insertUsersToGroup()
@@ -196,11 +192,6 @@ class UserController
             }
 
         }
-    }
-
-    private function redirectToGroup()
-    {
-        header("Location: /index.php/group/chat/$this->groupsId");
     }
 
     public function getImagePath()

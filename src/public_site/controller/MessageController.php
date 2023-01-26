@@ -2,7 +2,7 @@
 
 namespace public_site\controller;
 
-use api\manager\SessionManager;
+use api\manager\RedirectManager;
 use api\manager\ServerRequestManager;
 use api\model\Database;
 use api\model\MessageModel;
@@ -32,7 +32,7 @@ class MessageController
     public function sendMessage()
     {
         $this->insertMessageToDatabase();
-        $this->redirectToChat();
+        RedirectManager::redirectToChat(ServerRequestManager::getGroupIdFromUri());
     }
 
     private function insertMessageToDatabase()
@@ -44,12 +44,6 @@ class MessageController
         $messageModel->groupsId = ServerRequestManager::getGroupIdFromUri();
         $messageModel->usersId = $this->getUsersId();
         $messageModel->save();
-    }
-
-    private function redirectToChat()
-    {
-        $id = ServerRequestManager::getGroupIdFromUri();
-        header("Location: /index.php/group/chat/$id");
     }
 
     private function getUsersId(): int

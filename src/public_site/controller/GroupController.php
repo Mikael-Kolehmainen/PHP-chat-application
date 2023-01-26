@@ -4,6 +4,7 @@ namespace public_site\controller;
 
 use api\manager\ServerRequestManager;
 use api\manager\SessionManager;
+use api\manager\RedirectManager;
 use api\model\GroupModel;
 use api\model\Database;
 use api\model\FileModel;
@@ -132,7 +133,7 @@ class GroupController
         $this->saveGroupImageToServer();
         $this->insertGroupToDatabase();
         $this->addGroupCreatorAsMemberToGroup();
-        $this->redirectToGroups();
+        RedirectManager::redirectToGroups();
     }
 
     private function saveGroupImageToServer()
@@ -157,11 +158,6 @@ class GroupController
         $userController->groupsId = $this->id;
         $userController->id = $userController->getId();
         $userController->addToGroup();
-    }
-
-    private function redirectToGroups()
-    {
-        header("Location: /index.php/groups");
     }
 
     /**
