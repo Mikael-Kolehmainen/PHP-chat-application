@@ -3,9 +3,11 @@
 namespace public_site\controller;
 
 use api\manager\ServerRequestManager;
+use api\manager\SessionManager;
 use api\model\GroupModel;
 use api\model\Database;
-use api\manager\SessionManager;
+use api\model\FileModel;
+use api\misc\RandomString;
 
 class GroupController
 {
@@ -16,7 +18,7 @@ class GroupController
     private $groupName;
 
     /** @var string */
-    private $image;
+    private $imagePath;
 
     /** @var Database */
     private $db;
@@ -98,23 +100,64 @@ class GroupController
     public function showCreateGroup()
     {
         echo "
-            <script src='/src/public_site/js/image-preview.js' defer></script
+            <script src='/src/public_site/js/file-functions.js' defer></script
         </head>
         <section>
             <article class='box create-group'>
                 <h1>CREATE GROUP</h1>
-                <form action='' method='POST' enctype='multipart/form-data'>
+                <form action='/index.php/group/insert' method='POST' enctype='multipart/form-data'>
                     <label class='circle-file-input' id='image-file-input'>
                         <input type='file' id='image' name='group-image' accept='png/jpg/jpeg/gif' required>
                         <p id='file-input-text'>CHOOSE IMAGE</p>
                     </label>
-                    <input type='text' name='groupname' placeholder='GROUP NAME' class='input-field' maxlength='20'>
-                    <input type='submit' value='CREATE' class='btn'>
+                    <input type='text' name='group-name' placeholder='GROUP NAME' class='input-field' maxlength='20'>
+                    <p id='validation-msg'> </p>
+                    <input type='submit' value='CREATE' class='btn' name='create-group'>
                 </form>
                 <a href='/index.php/groups'>Go back</a>
             </article>
         </section>
         ";
+    }
+
+
+    /**
+     *  /index.php/group/insert
+     */
+    public function saveGroup()
+    {
+        $this->saveGroupImageToServer();
+        $this->insertGroupToDatabase();
+        $this->addGroupCreatorAsMemberToGroup();
+        $this->redirectToGroups();
+    }
+
+    private function saveGroupImageToServer()
+    {
+        $fileName = RandomString::getRandomString(10);
+        $fileModel = new FileModel(ServerRequestManager::filesGroupImage(), "/src/public_site/media/groups/$fileName");
+        $this->imagePath = $fileModel->createFilePath();
+        $fileModel->saveFileToServer();
+    }
+
+    private function insertGroupToDatabase()
+    {
+        $groupModel = new GroupModel($this->db);
+        $groupModel->groupName = ServerRequestManager::postGroupName();
+        $groupModel->image = $this->imagePath;
+        $this->id = $groupModel->save();
+    }
+
+    private function addGroupCreatorAsMemberToGroup()
+    {
+        $userController = new UserController();
+        $userController->groupsId = $this->id;
+        $userController->addToGroup();
+    }
+
+    private function redirectToGroups()
+    {
+        header("Location: /index.php/groups");
     }
 
     /**
@@ -170,7 +213,7 @@ class GroupController
 
         $this->id = $groupData->id;
         $this->groupName = $groupData->groupName;
-        $this->image = $groupData->image;
+        $this->imagePath = $groupData->image;
     }
 
     private function showChatPage()
@@ -191,7 +234,7 @@ class GroupController
                         </a>
                     </div>
                     <div class='round-image'>
-                        <img src='$this->image'>
+                        <img src='$this->imagePath'>
                     </div>
                     <h1>$this->groupName</h1>
 

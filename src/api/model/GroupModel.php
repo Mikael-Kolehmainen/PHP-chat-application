@@ -28,11 +28,28 @@ class GroupModel
         $this->db = $database;
     }
 
+    public function save(): int
+    {
+        return $this->db->insert(
+            'INSERT INTO ' . self::TABLE_NAME .
+                ' (' .
+                self::FIELD_NAME . ', ' .
+                self::FIELD_IMAGE .
+                ') VALUES (?, ?)',
+            [
+                ['ss'],
+                [
+                    $this->groupName,
+                    $this->image,
+                ]
+            ]);
+    }
+
     public function load()
     {
         $records = $this->db->select(
             'SELECT * FROM ' . self::TABLE_NAME . ' WHERE ' . self::FIELD_ID . ' = ?',
-            [["s"], [$this->id]]
+            [['s'], [$this->id]]
         );
         $record = array_pop($records);
         return $this->mapFromDbRecord($record);

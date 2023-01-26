@@ -98,7 +98,9 @@ section .groups {
     margin: 0;
     text-align: left;
     border-bottom: 1px solid white;
-    background-color: #006197; }
+    background-color: #006197;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px; }
 
 section .chat {
   height: 750px;

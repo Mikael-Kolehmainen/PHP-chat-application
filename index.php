@@ -77,6 +77,17 @@ switch ($uri[2]) {
             case "add-user":
                 showAddUsersForm();
                 break;
+            case "insert":
+                if (ServerRequestManager::issetCreateGroup()) {
+                    saveGroupDetails();
+                } else {
+                    showError(
+                        "Error in group creation",
+                        "Please fill the form on the group creation page.",
+                        "/index.php/group/create"
+                    );
+                }
+                break;
         }
         break;
     case "message":
@@ -125,73 +136,79 @@ if ($uri[2] != "ajax") {
     ";
 }
 
-function showCreateUserForm()
+function showCreateUserForm(): void
 {
     $userController = new UserController();
     $userController->showCreateForm();
 }
 
-function showLogInUserForm()
+function showLogInUserForm(): void
 {
     $userController = new UserController();
     $userController->showLogInForm();
 }
 
-function logOutUser()
+function logOutUser(): void
 {
     $userController = new UserController();
     $userController->logOut();
 }
 
-function saveUserDetails()
+function saveUserDetails(): void
 {
     $userController = new UserController();
     $userController->saveUser();
 }
 
-function logInUser()
+function logInUser(): void
 {
     $userController = new UserController();
     $userController->logInUser();
 }
 
-function showGroups()
+function showGroups(): void
 {
     $groupController = new GroupController();
     $groupController->showGroups();
 }
 
-function showCreateGroupForm()
+function showCreateGroupForm(): void
 {
     $groupController = new GroupController();
     $groupController->showCreateGroup();
 }
 
-function showGroupChat()
+function showGroupChat(): void
 {
     $groupController = new GroupController();
     $groupController->showChat();
 }
 
-function showAddUsersForm()
+function showAddUsersForm(): void
 {
     $groupController = new GroupController();
     $groupController->showAddUsers();
 }
 
-function sendMessageToGroup()
+function saveGroupDetails(): void
+{
+    $groupController = new GroupController();
+    $groupController->saveGroup();
+}
+
+function sendMessageToGroup(): void
 {
     $messageController = new MessageController();
     $messageController->sendMessage();
 }
 
-function getMessages()
+function getMessages(): void
 {
     $messageController = new MessageController();
     $messageController->encodeDataToJSON();
 }
 
-function showError($title, $message, $link)
+function showError($title, $message, $link): void
 {
     $errorController = new ErrorController($title, $message, $link);
     $errorController->showErrorPage();

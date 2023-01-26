@@ -8,13 +8,16 @@ class ServerRequestManager
     private const POST = "POST";
     private const GET = "GET";
     private const REQUEST_URI = "REQUEST_URI";
-    private const CREATE = "create";
+    private const CREATE_USER = "create-user";
     private const LOG_IN = "log-in";
     private const SEND_MESSAGE = "send-message";
     private const MESSAGE = "message";
     private const USERNAME = "username";
     private const USER_IMAGE = "user-image";
     private const PASSWORD = "pw";
+    private const CREATE_GROUP = "create-group";
+    private const GROUP_NAME = "group-name";
+    private const GROUP_IMAGE = "group-image";
 
     public static function isPost(): bool
     {
@@ -42,7 +45,7 @@ class ServerRequestManager
 
     public static function issetCreateUser(): bool
     {
-        return isset($_POST[self::CREATE]);
+        return isset($_POST[self::CREATE_USER]);
     }
 
     public static function issetLogIn(): bool
@@ -73,5 +76,20 @@ class ServerRequestManager
     public static function postPassword(): string
     {
         return $_POST[self::PASSWORD];
+    }
+
+    public static function issetCreateGroup(): bool
+    {
+        return isset($_POST[self::CREATE_GROUP]);
+    }
+
+    public static function postGroupName(): string
+    {
+        return $_POST[self::GROUP_NAME];
+    }
+
+    public static function filesGroupImage(): array
+    {
+        return $_FILES[self::GROUP_IMAGE];
     }
 }

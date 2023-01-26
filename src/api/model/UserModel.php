@@ -29,6 +29,9 @@ class UserModel
     /** @var string */
     public $identifier;
 
+    /** @var int */
+    public $groupsId;
+
     /** @var Database */
     private $db;
 
@@ -107,6 +110,23 @@ class UserModel
         }
 
         return $IDs;
+    }
+
+    public function saveUsersToGroup(): int
+    {
+        return $this->db->insert(
+            'INSERT INTO ' . self::USER_GROUPS_TABLE_NAME .
+                ' (' .
+                self::USERS_ID . ', ' .
+                self::GROUPS_ID . 
+                ') VALUES (?, ?)',
+            [
+                ['ss'],
+                [
+                    $this->id,
+                    $this->groupsId
+                ]
+            ]);
     }
 
     /**

@@ -16,6 +16,8 @@ section  {
             text-align: left;
             border-bottom: 1px solid $font-primary-color;
             background-color: $secondary-color;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
         }
     }
 }

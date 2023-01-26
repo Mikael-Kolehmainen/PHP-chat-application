@@ -1,3 +1,5 @@
+/src/public_site/media/users
+/src/public_site/media/groups
 /node_modules
 package-lock.json
 package.json

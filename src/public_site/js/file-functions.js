@@ -26,6 +26,6 @@ function changeImagePreview()
     const fileInputText = document.getElementById("file-input-text");
     const userImageSrc = URL.createObjectURL(fileInput.files[0]);
 
-    fileInputContainer.style.background = `url('${userImageSrc}') no-repeat center`;
+    fileInputContainer.style.background = `url('${userImageSrc}') fixed no-repeat center`;
     fileInputText.innerText = "";
 }

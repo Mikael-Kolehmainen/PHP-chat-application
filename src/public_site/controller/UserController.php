@@ -18,11 +18,14 @@ class UserController
     /** @var string */
     private $identifier;
 
+    /** @var string */
+    private $imagePath;
+
     /** @var Database */
     private $db;
 
-    /** @var string */
-    private $imagePath;
+    /** @var int */
+    public $groupsId;
 
     public function __construct()
     {
@@ -154,6 +157,14 @@ class UserController
         return $userModel->loadGroupsIds();
     }
 
+    public function addToGroup()
+    {
+        $userModel = new UserModel($this->db);
+        $userModel->id = $this->getId();
+        $userModel->groupsId = $this->groupsId;
+        $userModel->saveUsersToGroup();
+    }
+
     public function getId()
     {
         $userModel = new UserModel($this->db);
@@ -197,7 +208,7 @@ class UserController
                             <li id='pw-length-validation'>8 characters long</li>
                         </ul>
                     </div>
-                    <input type='submit' id='create-btn' name='create' class='btn' value='CREATE' disabled>
+                    <input type='submit' id='create-btn' name='create-user' class='btn' value='CREATE' disabled>
                 </form>
                 <a href='/index.php/user/log-in'>Already a user? Click here</a>
             </article>
