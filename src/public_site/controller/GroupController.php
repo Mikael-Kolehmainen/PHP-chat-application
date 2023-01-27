@@ -137,7 +137,7 @@ class GroupController
 
     private function saveGroupImageToServer()
     {
-        $fileModel = new FileModel(ServerRequestManager::filesGroupImage(), "/src/public_site/media/groups/$fileName");
+        $fileModel = new FileModel(ServerRequestManager::filesGroupImage(), "/src/public_site/media/groups/");
         $fileModel->generateFileName();
         $this->imagePath = $fileModel->createFilePath();
         $fileModel->saveFileToServer();
