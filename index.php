@@ -124,6 +124,9 @@ switch ($uri[2]) {
                 case "get-messages":
                     getMessages();
                     break;
+                case "send-media":
+                    sendMedia();
+                    break;
                 case null: default:
                     header("HTTP/1.1 404 Not Found");
                     exit();
@@ -231,6 +234,12 @@ function getMessages(): void
 {
     $messageController = new MessageController();
     $messageController->encodeDataToJSON();
+}
+
+function sendMedia(): void
+{
+    $messageController = new MessageController();
+    $messageController->sendMedia();
 }
 
 function showError($title, $message, $link): void

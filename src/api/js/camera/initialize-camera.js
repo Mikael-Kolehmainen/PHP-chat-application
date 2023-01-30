@@ -11,6 +11,7 @@ function startCamera()
     camera.cameraOutput = document.querySelector("#camera-output");
     camera.cameraSensor = document.querySelector("#camera-sensor");
     camera.cameraTrigger = document.querySelector("#camera-trigger");
+    console.log(camera.cameraTrigger);
     camera.cameraFlip = document.querySelector("#camera-flip");
 
     camera.cameraTrigger.onclick = function()

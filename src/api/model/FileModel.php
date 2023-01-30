@@ -15,10 +15,14 @@ class FileModel
     /** @var string */
     public $filePath;
 
-    public function __construct($file, $filePath)
+    /** @var string */
+    private $fileExt;
+
+    public function __construct($file, $filePath, $fileExt = null)
     {
         $this->file = $file;
         $this->filePath = $filePath;
+        $this->fileExt = $fileExt;
     }
 
     public function generateFileName(): void
@@ -32,8 +36,10 @@ class FileModel
 
     public function createFilePath(): string
     {
-        $fileExt = pathinfo($this->file["name"], PATHINFO_EXTENSION);
-        $this->filePath = $this->filePath.".".$fileExt;
+        if ($this->fileExt === NULL) {
+            $this->fileExt = pathinfo($this->file["name"], PATHINFO_EXTENSION);
+        }
+        $this->filePath = $this->filePath.".".$this->fileExt;
 
         return $this->filePath;
     }

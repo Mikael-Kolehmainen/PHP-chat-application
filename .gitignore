@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 /src/public_site/media/users/
 /src/public_site/media/groups/
 /node_modules
 package-lock.json
 package.json
+=======
+/src/public_site/media/users
+/src/public_site/media/groups
+/node_modules
+>>>>>>> ba656d2569ca5d61fbcff5ad6da7d69986693096

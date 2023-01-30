@@ -57,7 +57,7 @@ class Camera
                             [
                                 ["webimagepath", this.imageBlob],
                                 ["webimagetype", this.imageBlob.type.split("/")[1]],
-                                ["groupid", groupId]
+                                ["group-id", groupId]
                             ]);
 
         sendImage.sendToPhpAsForm(function() {

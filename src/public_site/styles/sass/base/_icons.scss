@@ -16,6 +16,9 @@ a {
         &.fa-arrow-left {
             background: url('/src/public_site/media/icons/arrow-left.svg') no-repeat center;
         }
+        &.fa-chevron-left {
+            background: url('/src/public_site/media/icons/chevron-left.svg') no-repeat center;
+        }
         &.fa-user-plus {
             background: url('/src/public_site/media/icons/user-plus.svg') no-repeat center;
         }
@@ -24,6 +27,12 @@ a {
         }
         &.fa-users {
             background: url('/src/public_site/media/icons/users.svg') no-repeat center;
+        }
+        &.fa-xmark {
+            background: url('/src/public_site/media/icons/xmark.svg') no-repeat center;
+        }
+        &.fa-check {
+            background: url('/src/public_site/media/icons/check.svg') no-repeat center;
         }
     }
 }

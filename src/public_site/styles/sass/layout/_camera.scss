@@ -1,0 +1,74 @@
+#camera, #camera-view, #camera-sensor, #camera-output {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+#camera {
+    .top {
+        margin-top: 15px;
+        margin-left: 15px;
+    }
+}
+#camera-trigger, #camera-flip {
+    background-color: $primary-color;
+    color: white;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    position: absolute;
+    transform: translate(-50%, -50%);
+
+    &:hover {
+        cursor: pointer;
+        background-color: $secondary-color;
+    }
+}
+#camera-flip {
+    top: 92.5%;
+    left: 72%;
+    width: 45px;
+    height: 45px;
+
+    img {
+        width: 25px;
+        height: 25px;
+    }
+}
+#camera-trigger {
+    top: 92.5%;
+    left: 50%;
+    width: 90px;
+    height: 90px;
+
+    img {
+        height: 50px;
+        width: 50px;
+    }
+}
+.taken {
+    z-index: 2;
+}
+.bottom {
+    position: absolute;
+    bottom: 2.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 45px;
+    z-index: 99;
+
+    #accept-image, #reject-image {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px;
+        height: 100px;
+    }
+    #accept-image {
+        left: 85%;
+    }
+    #reject-image {
+        left: 15%;
+    }
+}

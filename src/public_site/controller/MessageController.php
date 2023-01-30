@@ -6,6 +6,7 @@ use api\manager\RedirectManager;
 use api\manager\ServerRequestManager;
 use api\model\Database;
 use api\model\MessageModel;
+use api\model\FileModel;
 
 class MessageController
 {
@@ -16,7 +17,7 @@ class MessageController
     private $message;
 
     /** @var string */
-    private $media;
+    private $mediaPath;
 
     /** @var Database */
     private $db;
@@ -27,12 +28,29 @@ class MessageController
     }
 
     /**
-     * index.php/message/insert
+     *  /index.php/message/insert
      */
     public function sendMessage()
     {
         $this->insertMessageToDatabase();
         RedirectManager::redirectToChat(ServerRequestManager::getGroupIdFromUri());
+    }
+
+    /**
+     *  /index.php/ajax/send-media
+     */
+    public function sendMedia()
+    {
+        $fileModel = new FileModel(
+            ServerRequestManager::filesMessageImage(),
+            "/src/public_site/media/chat/".ServerRequestManager::postMessageGroupId(),
+            ServerRequestManager::postMessageExt()
+        );
+        $fileModel->generateFileName();
+        $this->mediaPath = $fileModel->createFilePath();
+        $fileModel->saveFileToServer();
+
+        // Inseret to database
     }
 
     private function insertMessageToDatabase()
