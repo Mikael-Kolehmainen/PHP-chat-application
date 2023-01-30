@@ -1,0 +1,22 @@
+{
+  "name": "php-chat-application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass -w src/public_site/styles/sass/ -o src/public_site/styles/css/ --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mikael-Kolehmainen/PHP-chat-application.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mikael-Kolehmainen/PHP-chat-application/issues"
+  },
+  "homepage": "https://github.com/Mikael-Kolehmainen/PHP-chat-application#readme",
+  "dependencies": {
+    "node-sass": "^8.0.0"
+  }
+}
