@@ -16,6 +16,9 @@ class MessageController
     /** @var string */
     private $message;
 
+    /** @var int */
+    private $groupsId;
+
     /** @var string */
     private $mediaPath;
 
@@ -32,6 +35,8 @@ class MessageController
      */
     public function sendMessage()
     {
+        $this->groupsId = ServerRequestManager::getGroupIdFromUri();
+        $this->message = ServerRequestManager::postMessage();
         $this->insertMessageToDatabase();
         RedirectManager::redirectToChat(ServerRequestManager::getGroupIdFromUri());
     }
@@ -50,16 +55,20 @@ class MessageController
         $this->mediaPath = $fileModel->createFilePath();
         $fileModel->saveFileToServer();
 
-        // Inseret to database
+        $this->groupsId = ServerRequestManager::postMessageGroupId();
+        $this->message = "";
+        $this->insertMessageToDatabase();
+        RedirectManager::redirectToChat(ServerRequestManager::postMessageGroupId());
     }
 
     private function insertMessageToDatabase()
     {
         $messageModel = new MessageModel($this->db);
-        $messageModel->message = ServerRequestManager::postMessage();
+        $messageModel->message = $this->message;
+        $messageModel->media = $this->mediaPath;
         $messageModel->dateOfMessage = date("Y-m-d");
         $messageModel->timeOfMessage = date("H:i");
-        $messageModel->groupsId = ServerRequestManager::getGroupIdFromUri();
+        $messageModel->groupsId = $this->groupsId;
         $messageModel->usersId = $this->getUsersId();
         $messageModel->save();
     }
