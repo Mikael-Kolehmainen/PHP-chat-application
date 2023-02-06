@@ -169,13 +169,15 @@ section .chat {
         section .chat .chat-view .messages .message p {
           font-family: roboto-light;
           color: black; }
-        section .chat .chat-view .messages .message p:not(.time) {
+        section .chat .chat-view .messages .message p:not(.time), section .chat .chat-view .messages .message .message-media {
           background-color: #EAEAEA;
           margin-left: 5px;
           width: 355px;
           border-radius: 5px;
           text-align: justify;
           padding: 10px; }
+        section .chat .chat-view .messages .message .message-media {
+          padding-bottom: 25px; }
         section .chat .chat-view .messages .message .time {
           font-size: 12px;
           position: absolute;
@@ -185,7 +187,7 @@ section .chat {
           background-color: transparent; }
         section .chat .chat-view .messages .message.sent {
           flex-direction: row-reverse; }
-          section .chat .chat-view .messages .message.sent p:not(.time) {
+          section .chat .chat-view .messages .message.sent p:not(.time), section .chat .chat-view .messages .message.sent .message-media {
             margin-left: 0;
             margin-right: 5px;
             background-color: #c8c8c8; }

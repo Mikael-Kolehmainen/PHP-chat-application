@@ -56,13 +56,16 @@ section {
                         font-family: $light-font;
                         color: $font-secondary-color;
                     }
-                    p:not(.time) {
+                    p:not(.time), .message-media {
                         background-color: $input-background-color;
                         margin-left: 5px;
                         width: 355px;
                         border-radius: 5px;
                         text-align: justify;
                         padding: 10px;
+                    }
+                    .message-media {
+                        padding-bottom: 25px;
                     }
                     .time {
                         font-size: 12px;
@@ -75,7 +78,7 @@ section {
                     &.sent {
                         flex-direction: row-reverse;
 
-                        p:not(.time) {
+                        p:not(.time), .message-media {
                             margin-left: 0;
                             margin-right: 5px;
                             background-color: rgb(200, 200, 200);

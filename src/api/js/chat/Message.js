@@ -4,6 +4,7 @@ class Message
     #MESSAGE_CLASS_NAME = "message";
     #SENT_CLASS_NAME = "sent";
     #ROUND_IMAGE_CLASS_NAME = "round-image";
+    #MESSAGE_MEDIA_CLASS_NAME = "message-media";
 
     constructor(message, media, dateOfMessage, timeOfMessage, userImage, sentByUser)
     {
@@ -22,6 +23,7 @@ class Message
                 <img src='/src/public_site/media/placeholder.png'>
             </div>
             <p>This is a longer message sent by the user. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in leo posuere, lacinia est sit amet, cursus risus. Ut ultrices elit ac arcu sodales pretium.</p>
+            <img src='/src/public_site/media/placeholder.png' class='message-media'>
             <p id='time'>21:20</p>
         </div>
     */
@@ -51,12 +53,13 @@ class Message
         userImage.src = this.userImage;
         userImageContainer.appendChild(userImage);
 
-        if (this.message != null) {
+        if (this.message != null && this.message != "") {
             const messageText = document.createElement("p");
             messageText.innerText = this.message;
             messageElement.appendChild(messageText);
         } else if (this.media != null) {
             const messageImage = document.createElement("img");
+            messageImage.classList.add(this.#MESSAGE_MEDIA_CLASS_NAME);
             messageElement.appendChild(messageImage);
 
             messageImage.addEventListener("error", function() { messageImage.src = "/src/public_site/media/image-not-found.png" });

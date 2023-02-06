@@ -23,10 +23,13 @@ class Chat
             messageObj.sentByUser = message.sentByUser;
 
             const messageDateObj = new Date(message.dateOfMessage);
-            const day = messageDateObj.getDate();
+            let day = messageDateObj.getDate();
             let month = messageDateObj.getMonth() + 1;
             if (month < 10) {
                 month = "0" + month;
+            }
+            if (day < 10) {
+                day = "0" + day;
             }
             const year = messageDateObj.getFullYear();
             const messageDate = day + "." + month + "." + year;
@@ -43,7 +46,7 @@ class Chat
             const messageElement = messageObj.createMessageElement();
             chatElement.appendChild(messageElement);
 
-            if (i == this.messagesData.lenght - 1) {
+            if (i == this.messagesData.length - 1) {
                 messageElement.scrollIntoView();
             }
             i++;
