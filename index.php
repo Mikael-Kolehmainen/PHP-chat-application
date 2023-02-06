@@ -127,6 +127,9 @@ switch ($uri[2]) {
                 case "send-media":
                     sendMedia();
                     break;
+                case "remove-messages-session":
+                    removeMessagesSession();
+                    break;
                 case null: default:
                     header("HTTP/1.1 404 Not Found");
                     exit();
@@ -240,6 +243,12 @@ function sendMedia(): void
 {
     $messageController = new MessageController();
     $messageController->sendMedia();
+}
+
+function removeMessagesSession(): void
+{
+    $messageController = new MessageController();
+    $messageController->removeSession();
 }
 
 function showError($title, $message, $link): void

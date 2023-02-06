@@ -231,6 +231,7 @@ class GroupController
             <script src='/src/api/js/chat/Message.js' defer></script>
             <script src='/src/api/js/chat/Chat.js' defer></script>
             <script src='/src/api/js/chat/update-chat.js' defer></script>
+            <script src='/src/api/js/before-closing.js' defer></script>
         </head>
         <section>
             <article class='box chat'>

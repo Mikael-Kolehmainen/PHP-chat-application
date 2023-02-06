@@ -84,7 +84,7 @@ class MessageController
     /**
      *  /index.php/ajax/get-messages/{group.id}
      */
-    public function encodeDataToJSON()
+    public function encodeDataToJSON(): void
     {
         $groupController = new GroupController();
         $groupController->id = ServerRequestManager::getGroupIdFromUri();
@@ -97,5 +97,13 @@ class MessageController
         } else {
             echo json_encode("already saved");
         }
+    }
+
+    /**
+     *  /index.php/ajax/remove-messages-session
+     */
+    public function removeSession(): void
+    {
+        SessionManager::deleteAmountOfMessages();
     }
 }

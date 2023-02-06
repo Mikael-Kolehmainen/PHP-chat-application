@@ -41,4 +41,9 @@ class SessionManager
     {
         return $_SESSION[self::AMOUNT_OF_MESSAGES];
     }
+
+    public static function deleteAmountOfMessages(): void
+    {
+        unset($_SESSION[self::AMOUNT_OF_MESSAGES]);
+    }
 }
