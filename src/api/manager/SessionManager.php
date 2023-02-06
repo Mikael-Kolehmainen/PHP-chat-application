@@ -5,6 +5,7 @@ namespace api\manager;
 class SessionManager
 {
     private const USER_IDENTIFIER = "user-identifier";
+    private const AMOUNT_OF_MESSAGES = "amount-of-messages";
 
     public static function saveUserIdentifier($identifier): void
     {
@@ -24,5 +25,20 @@ class SessionManager
     public static function deleteUserIdentifier(): void
     {
         unset($_SESSION[self::USER_IDENTIFIER]);
+    }
+
+    public static function saveAmountOfMessages($amountOfMessages): void
+    {
+        $_SESSION[self::AMOUNT_OF_MESSAGES] = $amountOfMessages;
+    }
+
+    public static function issetAmountOfMessages(): bool
+    {
+        return isset($_SESSION[self::AMOUNT_OF_MESSAGES]);
+    }
+
+    public static function getAmountOfMessages(): int
+    {
+        return $_SESSION[self::AMOUNT_OF_MESSAGES];
     }
 }

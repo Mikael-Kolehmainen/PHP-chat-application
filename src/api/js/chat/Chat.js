@@ -9,6 +9,10 @@ class Chat
 
     updateChat()
     {
+        if (this.messagesData == "already saved") {
+            return;
+        }
+
         this.#clearChat();
         const messageObj = new Message();
         const chatElement = document.getElementById(this.#CHAT_ID);

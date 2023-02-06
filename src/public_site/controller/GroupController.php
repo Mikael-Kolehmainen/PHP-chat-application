@@ -183,6 +183,11 @@ class GroupController
         }
     }
 
+    public function unsetMessagesSession()
+    {
+
+    }
+
     private function groupExists()
     {
         $groupModel = new GroupModel($this->db);

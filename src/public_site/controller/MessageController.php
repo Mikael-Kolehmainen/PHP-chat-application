@@ -4,6 +4,7 @@ namespace public_site\controller;
 
 use api\manager\RedirectManager;
 use api\manager\ServerRequestManager;
+use api\manager\SessionManager;
 use api\model\Database;
 use api\model\MessageModel;
 use api\model\FileModel;
@@ -87,7 +88,14 @@ class MessageController
     {
         $groupController = new GroupController();
         $groupController->id = ServerRequestManager::getGroupIdFromUri();
+        $messages = $groupController->getGroupMessages();
 
-        echo json_encode($groupController->getGroupMessages());
+        if (!SessionManager::issetAmountOfMessages() ||
+            SessionManager::getAmountOfMessages() != count($messages)) {
+            SessionManager::saveAmountOfMessages(count($messages));
+            echo json_encode($groupController->getGroupMessages());
+        } else {
+            echo json_encode("already saved");
+        }
     }
 }
