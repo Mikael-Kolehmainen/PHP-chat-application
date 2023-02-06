@@ -1,0 +1,20 @@
+@media only screen and (max-width: 450px) {
+    html, body {
+        background-color: $primary-color;
+    }
+    .box {
+        box-shadow: none;
+        width: 100%;
+
+        &.groups, &.chat {
+            height: 100%;
+
+            h1 {
+                padding-top: 40px;
+            }
+            .red-link {
+                top: 30px;
+            }
+        }
+    }
+}
