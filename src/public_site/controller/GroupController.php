@@ -331,7 +331,7 @@ class GroupController
         </head>
         <section>
             <article class='box add-users'>
-                <h1>ADD USERS TO<br>$this->groupName</h1>
+                <h1>ADD USERS TO<br><i>$this->groupName</i></h1>
                 <form action='/index.php/group/insert-user/$this->id' method='POST'>
                     <input type='text' placeholder='Search here (username)' id='user-search' class='search-field input-field'>
                     <ul class='list-image-title' id='user-list'>";

@@ -1,11 +1,5 @@
-window.addEventListener('visibilitychange', function()
-{
-    removeUserData();
-});
-window.addEventListener('beforeunload', function()
-{
-    removeUserData();
-});
+window.addEventListener('visibilitychange', removeUserData);
+window.addEventListener('beforeunload', removeUserData);
 
 function removeUserData()
 {

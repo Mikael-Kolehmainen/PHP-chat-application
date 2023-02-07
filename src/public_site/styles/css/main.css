@@ -511,7 +511,18 @@ a i {
     width: 100%; }
     .box.groups, .box.chat {
       height: 100%; }
-      .box.groups h1, .box.chat h1 {
-        padding-top: 40px; }
-      .box.groups .red-link, .box.chat .red-link {
-        top: 30px; } }
+    .box.groups h1 {
+      padding-top: 40px; }
+    .box.groups .red-link {
+      top: 30px; }
+  section .chat {
+    overflow: hidden; }
+    section .chat .chat-view {
+      width: 95%;
+      padding-left: 2.5%;
+      padding-right: 2.5%; }
+      section .chat .chat-view .messages {
+        width: 95%; }
+        section .chat .chat-view .messages .message .round-image img {
+          width: 50px;
+          height: 50px; } }
