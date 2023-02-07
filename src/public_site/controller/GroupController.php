@@ -5,6 +5,7 @@ namespace public_site\controller;
 use api\manager\ServerRequestManager;
 use api\manager\SessionManager;
 use api\manager\RedirectManager;
+use api\manager\ValidationManager;
 use api\model\GroupModel;
 use api\model\Database;
 use api\model\FileModel;
@@ -164,32 +165,15 @@ class GroupController
      */
     public function showChat()
     {
-        if (!SessionManager::issetUserIdentifier()) {
-            $errorController = new ErrorController("Not logged in", "You're not logged in, please login or create an account.", "/index.php/user/create");
-            $errorController->showErrorPage();
-        }
-        if (!$this->groupExists()) {
-            $errorController = new ErrorController("Group doesn't exist", "The group couldn't be found with the given id.", "/index.php/groups");
-            $errorController->showErrorPage();
-        }
-        if (!$this->userIsAMember()) {
-            $errorController = new ErrorController("You're not a part of the group", "You're not a part of the given group.", "/index.php/groups");
-            $errorController->showErrorPage();
-        }
+        ValidationManager::validaterUserLoggedIn();
+        ValidationManager::validateGroupExistence($this->db);
+        ValidationManager::validateUserGroupMembership();
 
         $this->getGroupDetails();
         $this->showChatPage();
     }
 
-    private function groupExists()
-    {
-        $groupModel = new GroupModel($this->db);
-        $groupModel->id = ServerRequestManager::getGroupIdFromUri();
-
-        return !empty($groupModel->load()->id);
-    }
-
-    private function userIsAMember()
+    public function userIsAMember()
     {
         $groups = $this->getUserGroups();
 
