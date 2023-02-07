@@ -95,6 +95,10 @@ class MessageController
      */
     public function encodeDataToJSON(): void
     {
+        ValidationManager::validaterUserLoggedIn();
+        ValidationManager::validateGroupExistence($this->db, ServerRequestManager::getGroupIdFromUri());
+        ValidationManager::validateUserGroupMembership();
+
         $groupController = new GroupController();
         $groupController->id = ServerRequestManager::getGroupIdFromUri();
         $messages = $groupController->getGroupMessages();

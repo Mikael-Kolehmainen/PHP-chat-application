@@ -13,6 +13,7 @@ class ValidationManager
         if (!SessionManager::issetUserIdentifier()) {
             $errorController = new ErrorController("Not logged in", "You're not logged in, please login or create an account.", "/index.php/user/create");
             $errorController->showErrorPage();
+            exit();
         }
     }
 
@@ -24,6 +25,7 @@ class ValidationManager
         if (empty($groupModel->load()->id)) {
             $errorController = new ErrorController("Group doesn't exist", "The group couldn't be found with the given id.", "/index.php/groups");
             $errorController->showErrorPage();
+            exit();
         }
     }
 
@@ -34,6 +36,7 @@ class ValidationManager
         if (!$groupController->userIsAMember()) {
             $errorController = new ErrorController("You're not a part of the group", "You're not a part of the given group.", "/index.php/groups");
             $errorController->showErrorPage();
+            exit();
         }
     }
 }

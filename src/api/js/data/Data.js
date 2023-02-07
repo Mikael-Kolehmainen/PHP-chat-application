@@ -57,7 +57,7 @@ class Data
                     resolve(xmlhttp.responseText);
                 } else {
                     reject({
-                        status: this.status,
+                        status: xmlhttp.status,
                         statusText: xmlhttp.statusText
                     });
                 }

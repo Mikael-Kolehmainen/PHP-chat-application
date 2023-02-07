@@ -113,7 +113,7 @@ switch ($uri[2]) {
             showError(
                 "Error in sending message",
                 "Please send a message in a chat.",
-                "/index.php/message/insert"
+                "/index.php/groups"
             );
         }
         break;
@@ -135,9 +135,6 @@ switch ($uri[2]) {
                     exit();
             }
         }
-        break;
-    case "error":
-        showError("Error title", "This is the error page.", "/index.php/user/create");
         break;
     default:
         showError(
@@ -206,7 +203,7 @@ function showGroupChat(): void
 function showCamera(): void
 {
     $cameraController = new CameraController();
-    $cameraController->showCameraPage();
+    $cameraController->showCamera();
 }
 
 function showAddUsersForm(): void

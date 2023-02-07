@@ -57,6 +57,16 @@ class ServerRequestManager
         return isset($_POST[self::LOG_IN]);
     }
 
+    public static function issetCreateGroup(): bool
+    {
+        return isset($_POST[self::CREATE_GROUP]);
+    }
+
+    public static function issetGroupAddUser(): bool
+    {
+        return isset($_POST[self::GROUP_ADD_USER]);
+    }
+
     public static function issetSendMessage(): bool
     {
         return isset($_POST[self::SEND_MESSAGE]);
@@ -72,39 +82,14 @@ class ServerRequestManager
         return $_POST[self::USERNAME];
     }
 
-    public static function filesUserImage(): array
-    {
-        return $_FILES[self::USER_IMAGE];
-    }
-
     public static function postPassword(): string
     {
         return $_POST[self::PASSWORD];
     }
 
-    public static function issetCreateGroup(): bool
-    {
-        return isset($_POST[self::CREATE_GROUP]);
-    }
-
     public static function postGroupName(): string
     {
         return $_POST[self::GROUP_NAME];
-    }
-
-    public static function filesGroupImage(): array
-    {
-        return $_FILES[self::GROUP_IMAGE];
-    }
-
-    public static function issetGroupAddUser(): bool
-    {
-        return isset($_POST[self::GROUP_ADD_USER]);
-    }
-
-    public static function filesMessageImage(): array
-    {
-        return $_FILES[self::MESSAGE_IMAGE];
     }
 
     public static function postMessageExt(): string
@@ -115,5 +100,20 @@ class ServerRequestManager
     public static function postMessageGroupId(): int
     {
         return $_POST[self::GROUP_ID];
+    }
+
+    public static function filesUserImage(): array
+    {
+        return $_FILES[self::USER_IMAGE];
+    }
+
+    public static function filesGroupImage(): array
+    {
+        return $_FILES[self::GROUP_IMAGE];
+    }
+
+    public static function filesMessageImage(): array
+    {
+        return $_FILES[self::MESSAGE_IMAGE];
     }
 }

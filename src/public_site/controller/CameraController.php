@@ -3,11 +3,29 @@
 namespace public_site\controller;
 
 use api\manager\ServerRequestManager;
-
+use api\manager\ValidationManager;
+use api\model\Database;
 
 class CameraController
 {
-    public function showCameraPage()
+    /** @var Database */
+    private $db;
+
+    public function __construct()
+    {
+        $this->db = new Database();
+    }
+
+    public function showCamera(): void
+    {
+        ValidationManager::validaterUserLoggedIn();
+        ValidationManager::validateGroupExistence($this->db, ServerRequestManager::getGroupIdFromUri());
+        ValidationManager::validateUserGroupMembership();
+
+        $this->showCameraPage();
+    }
+
+    private function showCameraPage()
     {
         $groupsId = ServerRequestManager::getGroupIdFromUri();
 

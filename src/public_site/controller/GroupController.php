@@ -35,12 +35,9 @@ class GroupController
      */
     public function showGroups()
     {
-        if (SessionManager::issetUserIdentifier()) {
-            $this->showGroupsPage();
-        } else {
-            $errorController = new ErrorController("Not logged in", "You're not logged in, please login or create an account", "/index.php/user/create");
-            $errorController->showErrorPage();
-        }
+        ValidationManager::validaterUserLoggedIn();
+
+        $this->showGroupsPage();
     }
 
     private function showGroupsPage()
@@ -97,10 +94,17 @@ class GroupController
         return $userController->getId();
     }
 
+    public function showCreateGroup(): void
+    {
+        ValidationManager::validaterUserLoggedIn();
+
+        $this->showCreateGroupPage();
+    }
+
     /**
      *  /index.php/group/create
      */
-    public function showCreateGroup()
+    private function showCreateGroupPage()
     {
         echo "
             <title>Chat-app | Create Group</title>
@@ -296,6 +300,10 @@ class GroupController
      */
     public function showAddUsers()
     {
+        ValidationManager::validaterUserLoggedIn();
+        ValidationManager::validateGroupExistence($this->db, ServerRequestManager::getGroupIdFromUri());
+        ValidationManager::validateUserGroupMembership();
+
         $this->getGroupDetails();
         $this->showAddUsersPage();
     }
