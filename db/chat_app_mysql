@@ -1,0 +1,39 @@
+CREATE DATABASE chat_app_db;
+
+CREATE TABLE groups (
+	id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(20) NOT NULL,
+	image VARCHAR(255) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE users (
+	id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(20) NOT NULL,
+	image VARCHAR(255) NOT NULL,
+	pw VARCHAR(255) NOT NULL,
+	identifier VARCHAR(20),
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE users_groups (
+	id INT NOT NULL AUTO_INCREMENT,
+	users_id INT NOT NULL,
+	groups_id INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (users_id) REFERENCES users(id),
+	FOREIGN KEY (groups_id) REFERENCES groups(id)
+);
+
+CREATE TABLE messages (
+	id INT NOT NULL AUTO_INCREMENT,
+	message VARCHAR(1000) DEFAULT NULL,
+	media VARCHAR(255) DEFAULT NULL,
+	dateofmessage DATE,
+	timeofmessage TIME,
+	groups_id INT NOT NULL,
+	users_id INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (groups_id) REFERENCES groups(id),
+	FOREIGN KEY (users_id) REFERENCES users(id)
+);
