@@ -6,16 +6,16 @@ class RedirectManager
 {
     public static function redirectToGroups(): void
     {
-        header("Location: /index.php/groups");
+        echo "<script>window.location.href = '/index.php/groups';</script>";
     }
 
     public static function redirectToChat($groupId): void
     {
-        header("Location: /index.php/group/chat/$groupId");
+        echo "<script>window.location.href = '/index.php/group/chat/$groupId';</script>";
     }
 
     public static function redirectToLogIn(): void
     {
-        header("Location: /index.php/user/log-in");
+        echo "<script>window.location.href = '/index.php/user/log-in';</script>";
     }
 }

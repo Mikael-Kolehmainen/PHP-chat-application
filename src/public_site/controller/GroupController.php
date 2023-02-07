@@ -350,7 +350,8 @@ class GroupController
         $groups = $this->getUserGroups();
 
         foreach ($groups as $group) {
-            if (ServerRequestManager::getGroupIdFromUri() == $group->id) {
+            if (ServerRequestManager::getGroupIdFromUri() == $group->id
+                || ServerRequestManager::postMessageGroupId() == $group->id) {
                 return true;
             }
         }
