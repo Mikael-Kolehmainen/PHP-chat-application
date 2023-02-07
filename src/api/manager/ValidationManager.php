@@ -16,10 +16,10 @@ class ValidationManager
         }
     }
 
-    public static function validateGroupExistence($db): void
+    public static function validateGroupExistence($db, $groupId): void
     {
         $groupModel = new GroupModel($db);
-        $groupModel->id = ServerRequestManager::getGroupIdFromUri();
+        $groupModel->id = $groupId;
 
         if (empty($groupModel->load()->id)) {
             $errorController = new ErrorController("Group doesn't exist", "The group couldn't be found with the given id.", "/index.php/groups");

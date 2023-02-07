@@ -166,7 +166,7 @@ class GroupController
     public function showChat()
     {
         ValidationManager::validaterUserLoggedIn();
-        ValidationManager::validateGroupExistence($this->db);
+        ValidationManager::validateGroupExistence($this->db, ServerRequestManager::getGroupIdFromUri());
         ValidationManager::validateUserGroupMembership();
 
         $this->getGroupDetails();

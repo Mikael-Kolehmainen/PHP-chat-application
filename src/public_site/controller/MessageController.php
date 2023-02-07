@@ -5,6 +5,7 @@ namespace public_site\controller;
 use api\manager\RedirectManager;
 use api\manager\ServerRequestManager;
 use api\manager\SessionManager;
+use api\manager\ValidationManager;
 use api\model\Database;
 use api\model\MessageModel;
 use api\model\FileModel;
@@ -36,6 +37,10 @@ class MessageController
      */
     public function sendMessage()
     {
+        ValidationManager::validaterUserLoggedIn();
+        ValidationManager::validateGroupExistence($this->db, ServerRequestManager::getGroupIdFromUri());
+        ValidationManager::validateUserGroupMembership();
+
         $this->groupsId = ServerRequestManager::getGroupIdFromUri();
         $this->message = ServerRequestManager::postMessage();
         $this->insertMessageToDatabase();
@@ -47,6 +52,10 @@ class MessageController
      */
     public function sendMedia()
     {
+        ValidationManager::validaterUserLoggedIn();
+        ValidationManager::validateGroupExistence($this->db, ServerRequestManager::postMessageGroupId());
+        ValidationManager::validateUserGroupMembership();
+
         $fileModel = new FileModel(
             ServerRequestManager::filesMessageImage(),
             "/src/public_site/media/chat/".ServerRequestManager::postMessageGroupId(),
