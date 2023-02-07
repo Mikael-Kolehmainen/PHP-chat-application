@@ -25,7 +25,7 @@ class CameraController
         $this->showCameraPage();
     }
 
-    private function showCameraPage()
+    private function showCameraPage(): void
     {
         $groupsId = ServerRequestManager::getGroupIdFromUri();
 

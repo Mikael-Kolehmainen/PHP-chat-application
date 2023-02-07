@@ -7,14 +7,14 @@ class SessionManager
     private const USER_IDENTIFIER = "user-identifier";
     private const AMOUNT_OF_MESSAGES = "amount-of-messages";
 
-    public static function saveUserIdentifier($identifier): void
-    {
-        $_SESSION[self::USER_IDENTIFIER] = $identifier;
-    }
-
     public static function issetUserIdentifier(): bool
     {
         return isset($_SESSION[self::USER_IDENTIFIER]);
+    }
+
+    public static function saveUserIdentifier($identifier): void
+    {
+        $_SESSION[self::USER_IDENTIFIER] = $identifier;
     }
 
     public static function getUserIdentifier(): string
@@ -27,14 +27,14 @@ class SessionManager
         unset($_SESSION[self::USER_IDENTIFIER]);
     }
 
-    public static function saveAmountOfMessages($amountOfMessages): void
-    {
-        $_SESSION[self::AMOUNT_OF_MESSAGES] = $amountOfMessages;
-    }
-
     public static function issetAmountOfMessages(): bool
     {
         return isset($_SESSION[self::AMOUNT_OF_MESSAGES]);
+    }
+
+    public static function saveAmountOfMessages($amountOfMessages): void
+    {
+        $_SESSION[self::AMOUNT_OF_MESSAGES] = $amountOfMessages;
     }
 
     public static function getAmountOfMessages(): int

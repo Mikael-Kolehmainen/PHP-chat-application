@@ -51,6 +51,7 @@ class UserModel
         return $this->mapFromDbRecord($record);
     }
 
+    /** @return array<$this> */
     public function loadAll()
     {
         $records = $this->db->select(
@@ -137,7 +138,7 @@ class UserModel
             'INSERT INTO ' . self::USER_GROUPS_TABLE_NAME .
                 ' (' .
                 self::FIELD_USERS_ID . ', ' .
-                self::FIELD_GROUPS_ID . 
+                self::FIELD_GROUPS_ID .
                 ') VALUES (?, ?)',
             [
                 ['ss'],

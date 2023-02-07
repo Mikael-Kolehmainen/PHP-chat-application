@@ -42,7 +42,7 @@ class ServerRequestManager
         return explode('/', $uri);
     }
 
-    public static function getGroupIdFromUri()
+    public static function getGroupIdFromUri(): string
     {
         return self::getUriParts()[4];
     }

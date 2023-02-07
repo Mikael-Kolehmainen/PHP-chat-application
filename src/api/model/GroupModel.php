@@ -56,6 +56,7 @@ class GroupModel
         return $this->mapFromDbRecord($record);
     }
 
+    /** @return MessageModel[] */
     public function loadGroupMessages()
     {
         $records = $this->db->select(

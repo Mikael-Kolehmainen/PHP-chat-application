@@ -7,6 +7,7 @@ use api\manager\SessionManager;
 use api\manager\RedirectManager;
 use api\manager\ValidationManager;
 use api\model\GroupModel;
+use api\model\MessageModel;
 use api\model\Database;
 use api\model\FileModel;
 use api\model\UserModel;
@@ -33,14 +34,14 @@ class GroupController
     /**
      *  /index.php/groups
      */
-    public function showGroups()
+    public function showGroups(): void
     {
         ValidationManager::validaterUserLoggedIn();
 
         $this->showGroupsPage();
     }
 
-    private function showGroupsPage()
+    private function showGroupsPage(): void
     {
         echo "
             <title>Chat-app | Chats</title>
@@ -62,7 +63,7 @@ class GroupController
         ";
     }
 
-    private function showUserGroups()
+    private function showUserGroups(): void
     {
         $groups = $this->getUserGroups();
 
@@ -80,6 +81,7 @@ class GroupController
         }
     }
 
+    /** @return GroupModel[] */
     private function getUserGroups()
     {
         $userController = new UserController();
@@ -94,6 +96,9 @@ class GroupController
         return $userController->getId();
     }
 
+    /**
+     *  /index.php/group/create
+     */
     public function showCreateGroup(): void
     {
         ValidationManager::validaterUserLoggedIn();
@@ -101,10 +106,7 @@ class GroupController
         $this->showCreateGroupPage();
     }
 
-    /**
-     *  /index.php/group/create
-     */
-    private function showCreateGroupPage()
+    private function showCreateGroupPage(): void
     {
         echo "
             <title>Chat-app | Create Group</title>
@@ -132,7 +134,7 @@ class GroupController
     /**
      *  /index.php/group/insert
      */
-    public function saveGroup()
+    public function saveGroup(): void
     {
         $this->saveGroupImageToServer();
         $this->insertGroupToDatabase();
@@ -140,7 +142,7 @@ class GroupController
         RedirectManager::redirectToGroups();
     }
 
-    private function saveGroupImageToServer()
+    private function saveGroupImageToServer(): void
     {
         $fileModel = new FileModel(ServerRequestManager::filesGroupImage(), "/src/public_site/media/groups/");
         $fileModel->generateFileName();
@@ -148,7 +150,7 @@ class GroupController
         $fileModel->saveFileToServer();
     }
 
-    private function insertGroupToDatabase()
+    private function insertGroupToDatabase(): void
     {
         $groupModel = new GroupModel($this->db);
         $groupModel->groupName = ServerRequestManager::postGroupName();
@@ -156,7 +158,7 @@ class GroupController
         $this->id = $groupModel->save();
     }
 
-    private function addGroupCreatorAsMemberToGroup()
+    private function addGroupCreatorAsMemberToGroup(): void
     {
         $userController = new UserController();
         $userController->groupsId = $this->id;
@@ -167,7 +169,7 @@ class GroupController
     /**
      *  /index.php/group/chat
      */
-    public function showChat()
+    public function showChat(): void
     {
         ValidationManager::validaterUserLoggedIn();
         ValidationManager::validateGroupExistence($this->db, ServerRequestManager::getGroupIdFromUri());
@@ -177,20 +179,7 @@ class GroupController
         $this->showChatPage();
     }
 
-    public function userIsAMember()
-    {
-        $groups = $this->getUserGroups();
-
-        foreach ($groups as $group) {
-            if (ServerRequestManager::getGroupIdFromUri() == $group->id) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private function getGroupDetails()
+    private function getGroupDetails(): void
     {
         $groupModel = new GroupModel($this->db);
         $groupModel->id = ServerRequestManager::getGroupIdFromUri();
@@ -201,7 +190,7 @@ class GroupController
         $this->imagePath = $groupData->image;
     }
 
-    private function showChatPage()
+    private function showChatPage(): void
     {
         echo "
             <title>Chat-app | Chat</title>
@@ -262,15 +251,7 @@ class GroupController
         ";
     }
 
-    /*
-    <li>
-        <div class='round-image'>
-            <img src='/src/public_site/media/placeholder.png'>
-        </div>
-        <p>USERNAME</p>
-    </li>
-    */
-    private function showGroupMembers()
+    private function showGroupMembers(): void
     {
         $groupModel = new GroupModel($this->db);
         $groupModel->id = $this->id;
@@ -288,6 +269,7 @@ class GroupController
         }
     }
 
+    /** @return MessageModel[] */
     public function getGroupMessages()
     {
         $groupModel = new GroupModel($this->db);
@@ -298,7 +280,7 @@ class GroupController
     /**
      *  /index.php/group/add-user
      */
-    public function showAddUsers()
+    public function showAddUsers(): void
     {
         ValidationManager::validaterUserLoggedIn();
         ValidationManager::validateGroupExistence($this->db, ServerRequestManager::getGroupIdFromUri());
@@ -308,7 +290,7 @@ class GroupController
         $this->showAddUsersPage();
     }
 
-    private function showAddUsersPage()
+    private function showAddUsersPage(): void
     {
         echo "
             <title>Chat-app | Add users to group</title>
@@ -331,7 +313,7 @@ class GroupController
         ";
     }
 
-    private function showAllUsersNotInGroup()
+    private function showAllUsersNotInGroup(): void
     {
         $userModel = new UserModel($this->db);
         $users = $userModel->loadAll();
@@ -361,5 +343,18 @@ class GroupController
                 ";
             }
         }
+    }
+
+    public function userIsAMember(): bool
+    {
+        $groups = $this->getUserGroups();
+
+        foreach ($groups as $group) {
+            if (ServerRequestManager::getGroupIdFromUri() == $group->id) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
